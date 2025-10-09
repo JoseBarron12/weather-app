@@ -92,3 +92,46 @@ small {
 #__next {
   isolation: isolate;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    width: 100%;
+    flex-grow: 1;
+}
+
+footer{
+    display: flex;
+    position: sticky;
+    width: 100%;
+    border-top: 1px solid gray;
+    padding: 16px;
+    justify-content: space-between;
+    background-color: rgb(240, 240, 240);
+}
+
+footer > div {
+    display: flex;
+    align-items: center;
+}
+
+.temperature-icons>svg:nth-child(2)
+{
+    margin: 0px -4px;
+}
+
+.icon {
+    height: 24px;
+    width: auto;
+}
+
+.menu > svg {
+    transform: rotate(180deg);
+    height: 32px;
+    width: auto;
+}
