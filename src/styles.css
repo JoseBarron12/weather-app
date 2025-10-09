@@ -103,11 +103,11 @@ body {
 main {
     width: 100%;
     flex-grow: 1;
+    overflow-y: hidden;
 }
 
 footer{
     display: flex;
-    position: sticky;
     width: 100%;
     border-top: 1px solid gray;
     padding: 16px;
