@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('SFProDisplay-Regular.woff2') format('woff2'),
+        url('SFProDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -98,13 +107,70 @@ body {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    font-family: 'SF Pro Display';
 }
 
 main {
     width: 100%;
     flex-grow: 1;
     overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
 }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    width: calc(100%);
+}
+
+.header > div {
+    width: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.location-name {
+    width: calc(100%);
+    font-size: 2.525rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.location-name > p {
+    text-align: center;
+    width: calc(100%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current-temp {
+    font-size: 5.525rem;
+    margin-bottom: -28px;
+    margin-top: -32px;
+    transform: translateX(16px);
+}
+
+.current-conditions  {
+    font-weight: bold;
+}
+
+
+.current-condition {
+    opacity: 80%;
+}
+
+.min-max-temps {
+    display: flex;
+    gap: 8px;
+    margin-top: -6px;
+}
+
+
 
 footer{
     display: flex;
