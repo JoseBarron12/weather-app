@@ -138,6 +138,7 @@ main {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
 
 .location-name > p {
@@ -146,13 +147,15 @@ main {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transform: translateX(12px);
+
 }
 
 .current-temp {
     font-size: 5.525rem;
-    margin-bottom: -28px;
+    margin-bottom: -24px;
     margin-top: -32px;
-    transform: translateX(16px);
+    transform: translateX(12px);
 }
 
 .current-conditions  {
