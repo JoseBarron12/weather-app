@@ -185,8 +185,9 @@ main {
 }
 
 .weather-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
@@ -196,6 +197,7 @@ main {
   border: 1px solid black;
   border-radius: 8px;
   padding: 8px 16px;
+  grid-column: span 2;
 }
 
 .description {
@@ -231,6 +233,7 @@ main {
   border: 1px solid black;
   border-radius: 8px;
   padding: 8px 16px;
+  grid-column: span 2;
 }
 
 .forecast-title {
@@ -306,6 +309,7 @@ main {
   border: 1px solid black;
   border-radius: 8px ;
   padding: 8px 16px;
+  grid-column: span 2;
 }
 
 .air-title {
@@ -360,6 +364,7 @@ main {
   border: 1px solid black;
   border-radius: 8px ;
   padding: 8px 16px;
+  grid-column: span 2;
 }
 
 .precipitation-title {
@@ -369,6 +374,8 @@ main {
   font-size: 0.85rem;
   padding-bottom: 4px;
 }
+
+
 
 footer{
     display: flex;
