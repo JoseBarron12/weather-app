@@ -8,10 +8,29 @@ class WeatherData {
     constructor(data)
     {
         this._data = data;
+
+        const days = data.days;
+
+        for(const day of days)
+        {
+            const dayData = new IndividualWeatherData(
+                fromUnixTime(day.datetimeEpoch),
+                Math.round(day.tempmin),
+                Math.round(day.temp),
+                Math.round(day.tempmax),
+                day.icon
+            );
+
+            this.fifteenDayForecast.push(dayData);
+        }
     }
 
     get data() {
         return this._data
+    }
+
+    get upcomingForecast() {
+        return this.fifteenDayForecast;
     }
 
     getLocationName() {
@@ -97,14 +116,17 @@ class WeatherData {
     getPressure() {
         return this._data.currentConditions.pressure
     }
+
+
     
 }
 
 class IndividualWeatherData{
-    constructor(date, tempMin, tempMax, icon)
+    constructor(date, tempMin, temp, tempMax, icon)
     {
         this._date = date;
         this._tempMin = tempMin;
+        this._temp = temp;
         this._tempMax = tempMax;
         this._icon = icon;
     }
@@ -115,6 +137,10 @@ class IndividualWeatherData{
 
     get tempMin() {
         return this._tempMin;
+    }
+
+    get temp() {
+        return this._temp;
     }
 
     get tempMax() {

@@ -91,4 +91,6 @@ console.log(weather.getDewPt());
 
 console.log(weather.getPressure());
 
+console.log(weather.upcomingForecast);
+
 
