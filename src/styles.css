@@ -7,6 +7,16 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'SF Pro Display Bold';
+    src: url('SFProDisplay-Bold.woff2') format('woff2'),
+        url('SFProDisplay-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 *,
 *::before,
 *::after {
@@ -173,7 +183,40 @@ main {
     margin-top: -6px;
 }
 
+.twenty-four-forecast {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 8px;
+}
 
+.description {
+  flex-grow: 1;
+  border-bottom: 1px solid black;
+  padding-bottom: 4px;
+}
+
+.hour-data {
+  width: calc(100%);
+  display: flex;
+  gap: 32px;
+  padding-top: 4px;
+  overflow-x: hidden;
+}
+
+.forecast-hour{
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.forecast-hour-temp {
+  font-size: large;
+}
 
 footer{
     display: flex;
