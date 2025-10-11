@@ -157,9 +157,7 @@ class WeatherData {
     getPressure() {
         return this._data.currentConditions.pressure
     }
-
-
-    
+ 
 }
 
 class IndividualWeatherData{
