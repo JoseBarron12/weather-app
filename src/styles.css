@@ -354,7 +354,21 @@ main {
   margin-top: -8px;
 }
 
+.precipitation-map {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 8px ;
+  padding: 8px 16px;
+}
 
+.precipitation-title {
+  display: flex;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding-bottom: 4px;
+}
 
 footer{
     display: flex;
