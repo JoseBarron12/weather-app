@@ -96,6 +96,32 @@ class WeatherData {
     
 }
 
+class WeatherDataDay {
+    constructor(date, tempMin, tempMax, icon)
+    {
+        this._date = date;
+        this._tempMin = tempMin;
+        this._tempMax = tempMax;
+        this._icon = icon;
+    }
+
+    get date() {
+        return this._date;
+    }
+
+    get tempMin() {
+        return this._tempMin;
+    }
+
+    get tempMax() {
+        return this._tempMax;
+    }
+
+    get icon() {
+        return this._icon;
+    }
+}
 
 
-export {WeatherData}
+
+export {WeatherData, WeatherDataDay}
