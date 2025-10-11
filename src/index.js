@@ -1,6 +1,7 @@
 import "./styles.css";
 import { WeatherData } from "./data";
 import { display } from "./display";
+import { createIconSvg } from "./icon";
 /*
 const getWeather = async () => {
     const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
@@ -95,4 +96,5 @@ console.log(weather.upcomingForecast);
 
 console.log(weather.todayForecast);
 
-
+const forecast = document.querySelector(".hour-data");
+forecast.appendChild(createIconSvg("rain"));
