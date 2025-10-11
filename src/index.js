@@ -96,4 +96,6 @@ console.log(weather.upcomingForecast);
 
 console.log(weather.todayForecast);
 
-display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast)
+display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast);
+
+display.upcomingForecast(weather.upcomingForecast);

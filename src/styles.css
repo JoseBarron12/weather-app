@@ -123,7 +123,7 @@ body {
 main {
     width: 100%;
     flex-grow: 1;
-    overflow-y: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     padding: 16px;
@@ -237,13 +237,70 @@ main {
   display: flex;
   gap: 4px;
   font-weight: bold;
-  font-size: smaller;
+  font-size: 0.85rem;
+  padding-bottom: 4px;
 }
 
 .header-icon {
   width: 20px;
   height: auto;
 }
+
+.day-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-day {
+  border-top: 1px solid black;
+  display: flex;
+  gap: 32px;
+  font-weight: bold;
+  padding: 8px 0px;
+}
+
+.forecast-day-time {
+  width: 48px;
+}
+
+.forecast-day-temps {
+  flex-grow: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.forecast-day-temps> div:not(:nth-child(2))
+{
+  width: 32px;
+}
+
+.temp-slider {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.temp-slider>input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background-color: gray;
+  opacity: 0.7;
+  outline: none;
+  border-radius: 8px;
+}
+
+.temp-slider>input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 8px;
+  background-color: red;
+  border-radius: 8px;
+}
+
+
 
 footer{
     display: flex;

@@ -68,5 +68,61 @@ export const display = (function() {
       }
     };
 
-    return {header, description, twentyFourHourForecast}
+    const upcomingForecast = (arrayOfDays) => {
+      const forecast = document.querySelector(".day-data");
+
+      for(let i = 0; i <  arrayOfDays.length; i++)
+      {
+          const forecastDiv = document.createElement("div");
+          forecastDiv.classList.add("forecast-day");
+          forecast.appendChild(forecastDiv);
+
+          const time = document.createElement("div");
+          time.classList.add("forecast-day-time");
+
+          const timeText = (i == 0) ? "Today" : format(arrayOfDays[i].date,"E");
+          time.textContent = timeText;
+          
+          forecastDiv.appendChild(time);
+
+          const icon = document.createElement("div");
+          icon.classList.add("forecast-day-icon");
+
+          const iconSVG = createIconSvg(arrayOfDays[i].icon);
+          icon.appendChild(iconSVG);
+
+          forecastDiv.appendChild(icon);
+
+          const tempDiv = document.createElement("div");
+          tempDiv.classList.add("forecast-day-temps");
+
+          forecastDiv.appendChild(tempDiv);
+
+          const tempMin = document.createElement("div");
+          tempMin.textContent = arrayOfDays[i].tempMin + "\u00B0";
+
+          tempDiv.appendChild(tempMin);
+
+          const tempSlider = document.createElement("div");
+          tempSlider.classList.add("temp-slider");
+
+          const slider = document.createElement("input");
+          slider.setAttribute("type", "range");
+          slider.setAttribute("disabled", "");
+          slider.setAttribute("min", `${arrayOfDays[i].tempMin}`);
+          slider.setAttribute("max", `${arrayOfDays[i].tempMax}`);
+          slider.setAttribute("value", `${arrayOfDays[i].temp}`);
+          
+          tempSlider.appendChild(slider);
+
+          tempDiv.appendChild(tempSlider);
+
+          const tempMax = document.createElement("div");
+          tempMax.textContent = arrayOfDays[i].tempMax + "\u00B0";
+
+          tempDiv.appendChild(tempMax);
+      }
+    }
+
+    return {header, description, twentyFourHourForecast, upcomingForecast}
 })();
