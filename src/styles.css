@@ -133,6 +133,7 @@ main {
     display: flex;
     flex-direction: column;
     width: calc(100%);
+    margin-bottom: 32px;
 }
 
 .header > div {
