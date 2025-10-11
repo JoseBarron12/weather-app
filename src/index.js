@@ -96,5 +96,4 @@ console.log(weather.upcomingForecast);
 
 console.log(weather.todayForecast);
 
-const forecast = document.querySelector(".hour-data");
-forecast.appendChild(createIconSvg("rain"));
+display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast)
