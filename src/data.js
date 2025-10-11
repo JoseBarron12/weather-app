@@ -1,4 +1,4 @@
-import { fromUnixTime } from "date-fns";
+import { fromUnixTime, getHours } from "date-fns";
 
 class WeatherData {
     
@@ -23,6 +23,43 @@ class WeatherData {
 
             this.fifteenDayForecast.push(dayData);
         }
+
+        const currentHour = getHours(fromUnixTime(data.currentConditions.datetimeEpoch));
+        console.log(currentHour);
+
+        const currentDay = days[0];
+        console.log(currentDay);
+
+        const currentDayHours = currentDay.hours;
+
+        for(let i = currentHour; i < currentDayHours.length; i++)
+        {
+            const hourData = new IndividualWeatherData(
+                fromUnixTime(currentDayHours[i].datetimeEpoch),
+                Math.round(currentDayHours[i].tempmin),
+                Math.round(currentDayHours[i].temp),
+                Math.round(currentDayHours[i].tempmax),
+                currentDayHours[i].icon
+            );
+            this.dayForecast.push(hourData);
+        }
+
+        const leftoverHours = 24 - (24 - currentHour);
+        const nextDay = days[1];
+        const nextDayHours = nextDay.hours;
+
+        for(let i = 0; i < leftoverHours; i++)
+        {
+            const hourData = new IndividualWeatherData(
+                fromUnixTime(nextDayHours[i].datetimeEpoch),
+                Math.round(nextDayHours[i].tempmin),
+                Math.round(nextDayHours[i].temp),
+                Math.round(nextDayHours[i].tempmax),
+                nextDayHours[i].icon
+            );
+            this.dayForecast.push(hourData);
+        }
+
     }
 
     get data() {
@@ -31,6 +68,10 @@ class WeatherData {
 
     get upcomingForecast() {
         return this.fifteenDayForecast;
+    }
+
+    get todayForecast() {
+        return this.dayForecast;
     }
 
     getLocationName() {

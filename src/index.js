@@ -93,4 +93,6 @@ console.log(weather.getPressure());
 
 console.log(weather.upcomingForecast);
 
+console.log(weather.todayForecast);
+
 
