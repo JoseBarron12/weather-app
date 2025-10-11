@@ -1,6 +1,10 @@
 import { fromUnixTime } from "date-fns";
 
 class WeatherData {
+    
+    dayForecast = [];
+    fifteenDayForecast = [];
+    
     constructor(data)
     {
         this._data = data;
