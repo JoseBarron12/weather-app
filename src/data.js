@@ -96,7 +96,7 @@ class WeatherData {
     
 }
 
-class WeatherDataDay {
+class IndividualWeatherData{
     constructor(date, tempMin, tempMax, icon)
     {
         this._date = date;
@@ -124,4 +124,4 @@ class WeatherDataDay {
 
 
 
-export {WeatherData, WeatherDataDay}
+export {WeatherData, IndividualWeatherData}
