@@ -271,5 +271,32 @@ export const display = (function() {
         precipitationDesc.textContent = "The chance of precipitation is " + weatherDataObj.getChanceOfPrecipitation() + "%.";
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation}
+    const visibility = (weatherDataObj) => {
+      const visibilityData =  weatherDataObj.getVisibility();
+      
+      const visibilityValue = document.querySelector(".visibility-value");
+      visibilityValue.textContent = visibilityData + " mi";
+
+      const visibilityDesc = document.querySelector(".visibility-desc");
+    
+      if(visibilityData < 4)
+      {
+        visibilityDesc = "Limited Visibility — caution advised.";
+      }
+      else if(visibilityData >= 4 && visibilityData < 6)
+      {
+        visibilityDesc = "Reduced Visibility — Objects are visible but not far.";
+      }
+      else if(visibilityData >= 6 && visibilityData < 10)
+      {
+        visibilityDesc = "Good view.";
+      }
+      else
+      {
+        visibilityDesc = "Perfectly clear view.";
+      }
+
+    }
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility}
 })();

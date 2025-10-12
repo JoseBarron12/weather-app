@@ -109,3 +109,5 @@ display.wind(weather);
 display.sun(weather);
 
 display.precipitation(weather);
+
+display.visibility(weather);

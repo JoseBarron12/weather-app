@@ -144,7 +144,7 @@ class WeatherData {
     }
 
     getVisibility() {
-        return this._data.currentConditions.visibility;
+        return Math.round(this._data.currentConditions.visibility);
     }
 
     getHumidity() {
