@@ -303,23 +303,6 @@ main {
   border-radius: 8px;
 }
 
-.air-quality {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  border-radius: 8px ;
-  padding: 8px 16px;
-  grid-column: span 2;
-}
-
-.air-title {
-  display: flex;
-  gap: 4px;
-  font-weight: bold;
-  font-size: 0.85rem;
-  padding-bottom: 4px;
-}
-
 .air-slider>input {
   -webkit-appearance: none;
   appearance: none;
@@ -347,18 +330,18 @@ main {
   border: 2px solid black;
 }
 
-.air-value {
+.air-value,.uv-value {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.air-desc {
+.air-desc,.uv-desc {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: -8px;
 }
 
-.precipitation-map {
+.precipitation-map,.air-quality, .feels-like, .uv-index{
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -367,7 +350,7 @@ main {
   grid-column: span 2;
 }
 
-.precipitation-title {
+.precipitation-title, .air-title, .feels-like-title, .uv-index-title {
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -375,7 +358,47 @@ main {
   padding-bottom: 4px;
 }
 
+.feels-like, .uv-index {
+  grid-column: span 1;
+}
 
+.feels-like-temp {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.feels-like-desc {
+  margin-top: auto;
+}
+
+.uv-slider>input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg,
+  rgb(0, 226, 0)20%, 
+  yellow 30%,
+  orange 60%, 
+  rgb(255, 0, 255) 80%);
+  opacity: 0.7;
+  outline: none;
+  border-radius: 8px;
+}
+
+.uv-slider>input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.uv-slider,.uv-warning {
+  margin-top: 8px;
+}
 
 footer{
     display: flex;
