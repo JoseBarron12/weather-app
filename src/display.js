@@ -1,4 +1,4 @@
-import { te } from "date-fns/locale";
+import { hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
 import { compareAsc, format } from "date-fns";
@@ -269,7 +269,7 @@ export const display = (function() {
 
         const precipitationDesc = document.querySelector(".precipitation-warning");
         precipitationDesc.textContent = "The chance of precipitation is " + weatherDataObj.getChanceOfPrecipitation() + "%.";
-    }
+    };
 
     const visibility = (weatherDataObj) => {
       const visibilityData =  weatherDataObj.getVisibility();
@@ -281,22 +281,31 @@ export const display = (function() {
     
       if(visibilityData < 4)
       {
-        visibilityDesc = "Limited Visibility — caution advised.";
+        visibilityDesc.textContent = "Limited Visibility — caution advised.";
       }
       else if(visibilityData >= 4 && visibilityData < 6)
       {
-        visibilityDesc = "Reduced Visibility — Objects are visible but not far.";
+        visibilityDesc.textContent = "Reduced Visibility — Objects are visible but not far.";
       }
       else if(visibilityData >= 6 && visibilityData < 10)
       {
-        visibilityDesc = "Good view.";
+        visibilityDesc.textContent = "Good view.";
       }
       else
       {
-        visibilityDesc = "Perfectly clear view.";
+        visibilityDesc.textContent = "Perfectly clear view.";
       }
+
+    };
+
+    const humidity = (weatherDataObj) => {
+      const humidityValue = document.querySelector(".humidity-value");
+      humidityValue.textContent = weatherDataObj.getHumidity() + "%";
+
+      const humidityDesc = document.querySelector(".humidity-desc>span");
+      humidityDesc.textContent = weatherDataObj.getDewPt() + "\u00B0";
 
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity}
 })();
