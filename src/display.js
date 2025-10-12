@@ -1,7 +1,7 @@
 import { te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
-import { format } from "date-fns";
+import { compareAsc, format } from "date-fns";
 
 const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -226,8 +226,42 @@ export const display = (function() {
 
       const windDir= document.querySelector(".wind-direction>.text");
       windDir.textContent = weatherDataObj.getWindDirection() +  "\u00B0 " + getWindDirection(weatherDataObj.getWindDirection());
-
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind}
+    const sun = (weatherDataObj) => {
+      const title = document.querySelector(".sun-title");
+      const currentSun = title.querySelector(".current-sun");
+      
+      const currentSunValue = document.querySelector(".sun-value");
+      const pastSun = document.querySelector(".sun-title-desc");
+
+      const currentTime = weatherDataObj.getCurrentDateTime();
+      const sunset = weatherDataObj.getSunset();
+      
+      if(compareAsc(currentTime, sunset) == 1) // time is past sunset
+      {
+        title.insertBefore(createIconSvg("sun-rise"),currentSun);
+        
+        const sunrise = weatherDataObj.this.fifteenDayForecast[1].sunrise;
+        
+        currentSun.textContent = "SUNRISE";
+        currentSunValue.textContent = format(sunrise,"h:mm a");
+
+        pastSun.textContent = "Sunset: " + format(sunset,"h:mm a");
+
+      }
+      else // time is not past sunset
+      {
+        title.insertBefore(createIconSvg("sun-set"), currentSun);
+        
+        const sunrise = weatherDataObj.getSunrise();
+        
+        currentSun.textContent = "SUNSET";
+        currentSunValue.textContent = format(sunset,"h:mm a");
+
+        pastSun.textContent = "Sunrise: " + format(sunrise,"h:mm a");
+      }
+    }
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun}
 })();

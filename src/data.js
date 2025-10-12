@@ -55,7 +55,8 @@ class WeatherData {
                 Math.round(nextDayHours[i].tempmin),
                 Math.round(nextDayHours[i].temp),
                 Math.round(nextDayHours[i].tempmax),
-                nextDayHours[i].icon
+                nextDayHours[i].icon,
+                fromUnixTime(nextDayHours[i].sunsetEpoch)
             );
             this.dayForecast.push(hourData);
         }
@@ -161,13 +162,14 @@ class WeatherData {
 }
 
 class IndividualWeatherData{
-    constructor(date, tempMin, temp, tempMax, icon)
+    constructor(date, tempMin, temp, tempMax, icon, sunrise)
     {
         this._date = date;
         this._tempMin = tempMin;
         this._temp = temp;
         this._tempMax = tempMax;
         this._icon = icon;
+        this._sunrise = sunrise;
     }
 
     get date() {
@@ -188,6 +190,10 @@ class IndividualWeatherData{
 
     get icon() {
         return this._icon;
+    }
+
+    get sunrise() {
+        return this._sunrise;
     }
 }
 
