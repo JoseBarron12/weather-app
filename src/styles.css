@@ -330,18 +330,18 @@ main {
   border: 2px solid black;
 }
 
-.air-value,.uv-value,.sun-value, .precipitation-value, .visibility-value, .humidity-value {
+.air-value,.uv-value,.sun-value, .precipitation-value, .visibility-value, .humidity-value, .average-value, .pressure-value {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.air-desc,.uv-desc, .precipitation-desc {
+.air-desc,.uv-desc, .precipitation-desc, .average-desc {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: -8px;
 }
 
-.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity, .moon{
+.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity, .moon, .average, .pressure{
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -350,7 +350,7 @@ main {
   grid-column: span 2;
 }
 
-.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title, .moon-title{
+.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title, .moon-title, .average-title, .pressure-title{
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -358,7 +358,7 @@ main {
   padding-bottom: 4px;
 }
 
-.feels-like, .uv-index, .sun, .precipitation, .visibility, .humidity{
+.feels-like, .uv-index, .sun, .precipitation, .visibility, .humidity, .average, .pressure{
   grid-column: span 1;
 }
 
@@ -367,7 +367,7 @@ main {
   font-weight: bold;
 }
 
-.feels-like-desc, .sun-title-desc, .visibility-desc, .humidity-desc{
+.feels-like-desc, .sun-title-desc, .visibility-desc, .humidity-desc, .average-values, .pressure-desc{
   margin-top: auto;
 }
 
@@ -418,6 +418,25 @@ main {
 
 .wind-data > div > .text, .moon-data > div > .text  {
   font-weight: bold;
+}
+
+.average-values {
+  display: flex;
+  flex-direction: column;
+}
+
+.average-values > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.average-values > div > .text {
+  font-weight: bold;
+}
+
+.average-values > div:nth-child(1)
+{
+  margin-bottom: -6px;
 }
 
 footer{
