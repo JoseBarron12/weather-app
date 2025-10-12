@@ -145,5 +145,41 @@ export const display = (function() {
 
     };
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike}
+    const uvIndex = (weatherDataObj) => {
+      const uvIndexData = weatherDataObj.getUVIndex();;
+     
+      const uvIndexValue = document.querySelector(".uv-value");
+      uvIndexValue.textContent = uvIndexData;
+
+      const uvIndexDesc = document.querySelector(".uv-desc");
+      const uvIndexWarning = document.querySelector(".uv-warning");
+
+      if(uvIndexData >= 0 && uvIndexData <= 2)
+      {
+        uvIndexDesc.textContent = "Low";
+        uvIndexWarning.textContent = "Minimal risk — safe to be outside.";
+      }
+      else if(uvIndexData >= 3 && uvIndexData <= 5)
+      {
+        uvIndexDesc.textContent = "Moderate";
+        uvIndexWarning.textContent = "Some risk — Use sun protection.";
+      }
+      else if(uvIndexData >= 6 && uvIndexData <= 7)
+      {
+        uvIndexDesc.textContent = "High";
+        uvIndexWarning.textContent = "High risk — Sun protection required.";
+      }
+      else
+      {
+        uvIndexDesc.textContent = "Extreme";
+        uvIndexWarning.textContent = "Extreme risk — Avoid sunlight.";
+      }
+
+      const uvIndexSlider = document.querySelector(".uv-slider>input");
+      console.log(uvIndexSlider);
+      uvIndexSlider.setAttribute("value", `${uvIndexData}`);
+
+    }
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex}
 })();

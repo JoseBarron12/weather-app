@@ -101,3 +101,5 @@ display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast);
 display.upcomingForecast(weather.upcomingForecast);
 
 display.feelsLike(weather);
+
+display.uvIndex(weather);
