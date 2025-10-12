@@ -330,18 +330,18 @@ main {
   border: 2px solid black;
 }
 
-.air-value,.uv-value {
+.air-value,.uv-value,.sun-value, .precipitation-value, .visibility-value, .humidity-value {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.air-desc,.uv-desc {
+.air-desc,.uv-desc, .precipitation-desc {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: -8px;
 }
 
-.precipitation-map,.air-quality, .feels-like, .uv-index, .wind{
+.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity{
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -350,7 +350,7 @@ main {
   grid-column: span 2;
 }
 
-.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title {
+.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title{
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -358,7 +358,7 @@ main {
   padding-bottom: 4px;
 }
 
-.feels-like, .uv-index {
+.feels-like, .uv-index, .sun, .precipitation, .visibility, .humidity{
   grid-column: span 1;
 }
 
@@ -367,7 +367,7 @@ main {
   font-weight: bold;
 }
 
-.feels-like-desc {
+.feels-like-desc, .sun-title-desc, .visibility-desc, .humidity-desc{
   margin-top: auto;
 }
 
@@ -396,7 +396,7 @@ main {
   border: 2px solid black;
 }
 
-.uv-slider,.uv-warning {
+.uv-slider,.uv-warning, .precipitation-warning {
   margin-top: 8px;
 }
 
