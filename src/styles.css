@@ -341,7 +341,7 @@ main {
   margin-top: -8px;
 }
 
-.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity{
+.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity, .moon{
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -350,7 +350,7 @@ main {
   grid-column: span 2;
 }
 
-.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title{
+.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title, .moon-title{
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -400,23 +400,23 @@ main {
   margin-top: 8px;
 }
 
-.wind-data {
+.wind-data, .moon-data {
   display: flex;
   flex-direction: column;
   margin: 8px 0px;
 }
 
-.wind-data > div {
+.wind-data > div, .moon-data>div {
   display: flex;
   justify-content: space-between;
   padding: 8px 0px;
 }
 
-.wind-data>div:not(:nth-child(3)) {
+.wind-data>div:not(:nth-child(3)),.moon-data>div:not(:nth-child(3))  {
   border-bottom: 1px solid black;
 }
 
-.wind-data > div > .text {
+.wind-data > div > .text, .moon-data > div > .text  {
   font-weight: bold;
 }
 
