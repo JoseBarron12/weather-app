@@ -119,11 +119,11 @@ class WeatherData {
     }
 
     getWindSpeed() {
-        return this._data.currentConditions.windspeed;
+        return Math.round(this._data.currentConditions.windspeed);
     }
 
     getWindGust() {
-        return this._data.currentConditions.windgust;
+        return Math.round(this._data.currentConditions.windgust);
     }
 
     getWindDirection() {

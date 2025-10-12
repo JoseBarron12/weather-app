@@ -103,3 +103,5 @@ display.upcomingForecast(weather.upcomingForecast);
 display.feelsLike(weather);
 
 display.uvIndex(weather);
+
+display.wind(weather);

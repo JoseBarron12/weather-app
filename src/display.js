@@ -7,6 +7,42 @@ const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+const getWindDirection = (dir) => {
+  if(dir > 337.5 || dir <= 22.5)
+  {
+    return "N";
+  }
+  else if(dir > 22.5 && dir <= 67.5)
+  {
+    return "NE";
+  }
+  else if(dir > 67.5 && dir <= 112.5)
+  {
+    return "E";
+  }
+  else if(dir > 112.5 && dir <= 157.5)
+  {
+    return "SE";
+  }
+  else if(dir > 157.5 && dir <= 202.5)
+  {
+    return "S";
+  }
+  else if(dir > 202.5 && dir <= 247.5)
+  {
+    return "SW";
+  }
+  else if(dir > 247.5 && dir <= 292.5)
+  {
+    return "W";
+  }
+  else if(dir > 292.5 && dir <= 337.5)
+  {
+    return "W";
+  }
+}
+
+
 export const display = (function() {
     const header = (weatherDataObj) => {
         const locationName = document.querySelector(".location-name>p");
@@ -179,7 +215,19 @@ export const display = (function() {
       console.log(uvIndexSlider);
       uvIndexSlider.setAttribute("value", `${uvIndexData}`);
 
+    };
+
+    const wind = (weatherDataObj) => {
+      const windSpeed = document.querySelector(".wind-speed>.text");
+      windSpeed.textContent = weatherDataObj.getWindSpeed() + " mph";
+
+      const windGust= document.querySelector(".wind-gust>.text");
+      windGust.textContent = weatherDataObj.getWindGust() + " mph";
+
+      const windDir= document.querySelector(".wind-direction>.text");
+      windDir.textContent = weatherDataObj.getWindDirection() +  "\u00B0 " + getWindDirection(weatherDataObj.getWindDirection());
+
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind}
 })();
