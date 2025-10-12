@@ -304,8 +304,30 @@ export const display = (function() {
 
       const humidityDesc = document.querySelector(".humidity-desc>span");
       humidityDesc.textContent = weatherDataObj.getDewPt() + "\u00B0";
+    }
+
+    const pressure = (weatherDataObj) => {
+      const pressureData = weatherDataObj.getPressure();
+      
+      const pressureValue = document.querySelector(".pressure-value");
+      pressureValue.textContent = pressureData + " mb"
+
+      const pressureDesc = document.querySelector(".pressure-desc>span");
+
+      if(pressureData < 1010)
+      {
+        pressureDesc.textContent = "lower than normal"
+      }
+      else if(pressureData >= 1010 && pressureData < 1025)
+      {
+        pressureDesc.textContent = "normal"
+      }
+      else
+      {
+        pressureDesc.textContent = "higher than normal"
+      }
 
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure}
 })();

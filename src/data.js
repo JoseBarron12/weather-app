@@ -156,7 +156,7 @@ class WeatherData {
     }
 
     getPressure() {
-        return this._data.currentConditions.pressure
+        return Math.round(this._data.currentConditions.pressure);
     }
  
 }
