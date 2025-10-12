@@ -341,7 +341,7 @@ main {
   margin-top: -8px;
 }
 
-.precipitation-map,.air-quality, .feels-like, .uv-index{
+.precipitation-map,.air-quality, .feels-like, .uv-index, .wind{
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -350,7 +350,7 @@ main {
   grid-column: span 2;
 }
 
-.precipitation-title, .air-title, .feels-like-title, .uv-index-title {
+.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title {
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -398,6 +398,26 @@ main {
 
 .uv-slider,.uv-warning {
   margin-top: 8px;
+}
+
+.wind-data {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0px;
+}
+
+.wind-data > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0px;
+}
+
+.wind-data>div:not(:nth-child(3)) {
+  border-bottom: 1px solid black;
+}
+
+.wind-data > div > .text {
+  font-weight: bold;
 }
 
 footer{
