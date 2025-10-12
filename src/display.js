@@ -122,7 +122,28 @@ export const display = (function() {
 
           tempDiv.appendChild(tempMax);
       }
-    }
+    };
 
-    return {header, description, twentyFourHourForecast, upcomingForecast}
+    const feelsLike = (weatherDataObj) => {
+      const feelsLikeTemp = document.querySelector(".feels-like-temp");
+      feelsLikeTemp.textContent = weatherDataObj.getFeelsLikeTemp() + "\u00B0";
+
+      const feelsLikeDesc = document.querySelector(".feels-like-desc");
+
+      if(weatherDataObj.getFeelsLikeTemp() < weatherDataObj.getCurrentTemp())
+      {
+        feelsLikeDesc.textContent = "Wind is making it cooler.";
+      }
+      else if(weatherDataObj.getFeelsLikeTemp() > weatherDataObj.getCurrentTemp())
+      {
+        feelsLikeDesc.textContent = "Humidity is making it hotter.";
+      }
+      else
+      {
+        feelsLikeDesc.textContent = "Weather feels like expected.";
+      }
+
+    };
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike}
 })();
