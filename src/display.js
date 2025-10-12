@@ -226,7 +226,7 @@ export const display = (function() {
 
       const windDir= document.querySelector(".wind-direction>.text");
       windDir.textContent = weatherDataObj.getWindDirection() +  "\u00B0 " + getWindDirection(weatherDataObj.getWindDirection());
-    }
+    };
 
     const sun = (weatherDataObj) => {
       const title = document.querySelector(".sun-title");
@@ -261,7 +261,15 @@ export const display = (function() {
 
         pastSun.textContent = "Sunrise: " + format(sunrise,"h:mm a");
       }
+    };
+
+    const precipitation =(weatherDataObj) => {
+        const precipitationValue = document.querySelector(".precipitation-value");
+        precipitationValue.textContent = weatherDataObj.getAmountOfPrecipitation() + '"';
+
+        const precipitationDesc = document.querySelector(".precipitation-warning");
+        precipitationDesc.textContent = "The chance of precipitation is " + weatherDataObj.getChanceOfPrecipitation() + "%.";
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation}
 })();

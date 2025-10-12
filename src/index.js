@@ -107,3 +107,5 @@ display.uvIndex(weather);
 display.wind(weather);
 
 display.sun(weather);
+
+display.precipitation(weather);
