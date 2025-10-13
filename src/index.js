@@ -117,3 +117,9 @@ display.airQuality(weather);
 const moonData = JSON.parse(localStorage.getItem("currentMoon"));
 
 console.log(moonData);
+
+weather.moonPhase = moonData;
+
+weather.moonRise = moonData;
+
+weather.moonSet = moonData;

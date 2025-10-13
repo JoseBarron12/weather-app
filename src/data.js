@@ -173,6 +173,30 @@ class WeatherData {
         return this._airQuality;
     }
 
+    set moonPhase(data) {
+        this._moonPhase = data.days[0].moonphase;
+    }
+
+    get moonPhase() {
+        return this._moonPhase;
+    }
+
+    set moonRise(data) {
+        this._moonRise = fromUnixTime(data.days[0].moonriseEpoch);
+    }
+
+    get moonRise() {
+        return this._moonRise;
+    }
+
+    set moonSet(data) {
+        this._moonSet = fromUnixTime(data.days[0].moonsetEpoch);
+    }
+
+    get moonSet() {
+        return this._moonSet;
+    }
+
 
 }
 
