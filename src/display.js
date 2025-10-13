@@ -329,5 +329,17 @@ export const display = (function() {
 
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure}
+    const average = (weatherDataObj) => {
+      const highTdy = document.querySelector(".average-today>.text");
+      highTdy.textContent = `H:${weatherDataObj.getMaxTemp()}` + "\u00B0";
+
+      const highAvg = document.querySelector(".average-overall>.text");
+      highAvg.textContent = `H:${weatherDataObj.averageHighTemp}` + "\u00B0";
+
+      const difference = document.querySelector(".average-value");
+      difference.textContent = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp + "\u00B0";
+
+    }
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average}
 })();

@@ -131,3 +131,5 @@ const savedAverageWeatherData = JSON.parse(localStorage.getItem("currentAverageW
 weather.averageHighTemp = savedAverageWeatherData;
 
 console.log(weather.averageHighTemp);
+
+display.average(weather);
