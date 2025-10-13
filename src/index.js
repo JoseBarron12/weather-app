@@ -60,8 +60,17 @@ const getAirQuality = async () => {
 
 getAirQuality();
 
-*/
+const getMoon = async () => {
+    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-11/?key=58BNGSSDKDUY7PYBE3E3WZ3TV&elements=moonphase,moonriseEpoch,moonsetEpoch");
+    const weatherData = await response.json();
+    const savedWeatherData = JSON.stringify(weatherData);
 
+    localStorage.setItem("currentMoon", savedWeatherData);
+}
+
+getMoon();
+
+*/
 
 const weatherSavedData = JSON.parse(localStorage.getItem("currentWeather"));
 
@@ -104,3 +113,7 @@ weather.airQuality = airQualityData;
 console.log(weather.airQuality);
 
 display.airQuality(weather);
+
+const moonData = JSON.parse(localStorage.getItem("currentMoon"));
+
+console.log(moonData);
