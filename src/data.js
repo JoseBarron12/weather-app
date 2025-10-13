@@ -25,10 +25,8 @@ class WeatherData {
         }
 
         const currentHour = getHours(fromUnixTime(data.currentConditions.datetimeEpoch));
-        console.log(currentHour);
 
         const currentDay = days[0];
-        console.log(currentDay);
 
         const currentDayHours = currentDay.hours;
 
@@ -166,6 +164,15 @@ class WeatherData {
     get averageHighTemp() {
         return Math.round(this._averageHighTemp);
     }
+
+    set airQuality(data) {
+        this._airQuality = data.days[0].aqius;
+    }
+
+    get airQuality() {
+        return this._airQuality;
+    }
+
 
 }
 

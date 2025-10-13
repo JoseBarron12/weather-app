@@ -212,7 +212,6 @@ export const display = (function() {
       }
 
       const uvIndexSlider = document.querySelector(".uv-slider>input");
-      console.log(uvIndexSlider);
       uvIndexSlider.setAttribute("value", `${uvIndexData}`);
 
     };
@@ -304,7 +303,7 @@ export const display = (function() {
 
       const humidityDesc = document.querySelector(".humidity-desc>span");
       humidityDesc.textContent = weatherDataObj.getDewPt() + "\u00B0";
-    }
+    };
 
     const pressure = (weatherDataObj) => {
       const pressureData = weatherDataObj.getPressure();
@@ -327,7 +326,7 @@ export const display = (function() {
         pressureDesc.textContent = "higher than normal"
       }
 
-    }
+    };
 
     const average = (weatherDataObj) => {
       const highTdy = document.querySelector(".average-today>.text");
@@ -339,7 +338,40 @@ export const display = (function() {
       const difference = document.querySelector(".average-value");
       difference.textContent = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp + "\u00B0";
 
+    };
+
+    const airQuality = (weatherDataObj) => {
+      const airData = weatherDataObj.airQuality;
+
+      const airValue = document.querySelector(".air-value");
+      airValue.textContent = airData;
+
+      const airSlider = document.querySelector(".air-slider>input");
+      airSlider.setAttribute("value",airData);
+
+      const airDesc = document.querySelector(".air-desc");
+
+      if(airData >= 0 && airData <= 50)
+      {
+        airDesc.textContent = "Good";
+      }
+      else if(airData >= 51 && airData <= 100)
+      {
+        airDesc.textContent = "Moderate";
+      }
+      else if(airData >= 101 && airData <= 150)
+      {
+        airDesc.textContent = "Unhealthy for Sensitive Groups";
+      }
+      else if(airData >= 151 && airData <= 200)
+      {
+        airDesc.textContent = "Unhealthy";
+      }
+      else {
+        airDesc.textContent = "Very Unhealthy";
+      }
+
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality}
 })();
