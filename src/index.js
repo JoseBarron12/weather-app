@@ -40,7 +40,17 @@ const getWeather = async () => {
 
 getWeather();
 
- */
+const getAverageWeather = async () => {
+    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/?key=58BNGSSDKDUY7PYBE3E3WZ3TV&include=stats");
+    const weatherData = await response.json();
+    const savedWeatherData = JSON.stringify(weatherData);
+
+    localStorage.setItem("currentAverageWeather", savedWeatherData);
+}
+
+getAverageWeather();
+
+*/
 
 const weatherSavedData = JSON.parse(localStorage.getItem("currentWeather"));
 
@@ -115,3 +125,9 @@ display.visibility(weather);
 display.humidity(weather);
 
 display.pressure(weather);
+
+const savedAverageWeatherData = JSON.parse(localStorage.getItem("currentAverageWeather"));
+
+weather.averageHighTemp = savedAverageWeatherData;
+
+console.log(weather.averageHighTemp);

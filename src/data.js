@@ -158,7 +158,15 @@ class WeatherData {
     getPressure() {
         return Math.round(this._data.currentConditions.pressure);
     }
- 
+
+    set averageHighTemp(data) {
+        this._averageHighTemp = data.days[0].normal.tempmax[1];
+    }
+
+    get averageHighTemp() {
+        return Math.round(this._averageHighTemp);
+    }
+
 }
 
 class IndividualWeatherData{
