@@ -373,5 +373,65 @@ export const display = (function() {
 
     }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality}
+    const moon =(weatherDataObj) => {
+      const moonPhase = weatherDataObj.moonPhase;
+
+      const title = document.querySelector(".moon-title");
+      const currentMoon = title.querySelector(".moon-phase");
+
+      if(moonPhase == 0)
+      {
+        title.insertBefore(createIconSvg("new-moon"),currentMoon);
+        currentMoon.textContent = "NEW MOON";
+      }
+      else if(moonPhase > 0 && moonPhase < 0.25)
+      {
+        title.insertBefore(createIconSvg("waxing-crescent"),currentMoon);
+        currentMoon.textContent = "WAXING CRESCENT";
+      }
+      else if(moonPhase == 0.25)
+      {
+        title.insertBefore(createIconSvg("first-quarter"),currentMoon);
+        currentMoon.textContent = "FIRST QUARTER";
+      }
+      else if(moonPhase > 0.25 && moonPhase < 0.5)
+      {
+        title.insertBefore(createIconSvg("waxing-gibbous"),currentMoon);
+        currentMoon.textContent = "WAXING GIBBOUS";
+      }
+      else if(moonPhase == 0.50)
+      {
+        title.insertBefore(createIconSvg("full-moon"),currentMoon);
+        currentMoon.textContent = "FULL MOON";
+      }
+      else if(moonPhase > 0.5 && moonPhase < 0.75)
+      {
+        title.insertBefore(createIconSvg("waning-gibbous"),currentMoon);
+        currentMoon.textContent = "WANING GIBBOUS";
+      }
+      else if(moonPhase == 0.75)
+      {
+        title.insertBefore(createIconSvg("last-quarter"),currentMoon);
+        currentMoon.textContent = "LAST QUARTER";
+      }
+      else if(moonPhase > 0.75 && moonPhase <= 1)
+      {
+        title.insertBefore(createIconSvg("waning-crescent"),currentMoon);
+        currentMoon.textContent = "WANING CRESCENT";
+      }
+      
+      const moonRise = document.querySelector(".moon-rise>.text");
+      moonRise.textContent = format(weatherDataObj.moonRise,"h:mm a");
+
+      const moonSet = document.querySelector(".moon-set>.text");
+      moonSet.textContent = format(weatherDataObj.moonSet,"h:mm a");
+
+      const moonDuration = document.querySelector(".moon-duration>.text");
+      moonDuration.textContent = weatherDataObj.moonDuration  + " hours" 
+
+    }
+
+    
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon}
 })();

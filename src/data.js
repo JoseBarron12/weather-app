@@ -1,4 +1,4 @@
-import { fromUnixTime, getHours } from "date-fns";
+import { differenceInHours, differenceInMinutes, fromUnixTime, getHours } from "date-fns";
 
 class WeatherData {
     
@@ -197,6 +197,16 @@ class WeatherData {
         return this._moonSet;
     }
 
+    set moonDuration(data) {
+        const moonRise = fromUnixTime(data.days[0].moonriseEpoch);
+        const moonSet = fromUnixTime(data.days[1].moonsetEpoch);
+
+        this._moonDuration = differenceInHours(moonSet, moonRise);
+    }
+
+    get moonDuration() {
+        return this._moonDuration;
+    }
 
 }
 

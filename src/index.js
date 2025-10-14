@@ -123,3 +123,7 @@ weather.moonPhase = moonData;
 weather.moonRise = moonData;
 
 weather.moonSet = moonData;
+
+weather.moonDuration = moonData;
+
+display.moon(weather);
