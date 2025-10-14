@@ -1,7 +1,7 @@
 import { hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
-import { compareAsc, format } from "date-fns";
+import { compareAsc, format, getHours } from "date-fns";
 
 const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -67,8 +67,22 @@ export const display = (function() {
       descriptionDiv.textContent = desc;
     };
 
-    const twentyFourHourForecast = (desc, arrayOfHours) => {
+    const twentyFourHourForecast = (desc, arrayOfHours, weatherDataObj) => {
       display.description(desc);
+
+      let currentTime = weatherDataObj.getCurrentDateTime();
+      let sunset = weatherDataObj.getSunset();
+      let sunrise = weatherDataObj.getSunrise();
+      
+      if(compareAsc(currentTime, sunrise) == 1) // IF TIME IS PAST SUNRISE
+      {
+        sunrise = weatherDataObj.fifteenDayForecast[1].sunrise;
+      }
+
+      console.log(getHours(sunrise));
+
+      let displayedSunset = false;
+      let displaySunrise = false;
 
       const forecast = document.querySelector(".hour-data");
       for(let i = 0; i < arrayOfHours.length; i++)
@@ -96,11 +110,71 @@ export const display = (function() {
           const temp = document.createElement("div");
           temp.classList.add("forecast-hour-temp");
 
-          const tempText = arrayOfHours[i].temp + "\u00B0";
+          const tempText = (i == 0) ? weatherDataObj.getCurrentTemp() + "\u00B0" : arrayOfHours[i].temp + "\u00B0";
           temp.textContent = tempText;
 
           forecastDiv.appendChild(temp);
 
+          if(getHours(sunrise) === getHours(arrayOfHours[i].date) && !displaySunrise)
+          {
+            const forecastDiv = document.createElement("div");
+            forecastDiv.classList.add("forecast-hour");
+            forecast.appendChild(forecastDiv);
+
+            const time = document.createElement("div");
+            time.classList.add("forecast-hour-time");
+
+            const timeText = format(sunrise,"h:mm a");
+            time.textContent = timeText;
+
+            forecastDiv.appendChild(time);
+
+            const icon = document.createElement("div");
+            icon.classList.add("forecast-hour-icon");
+
+            const iconSVG = createIconSvg("sun-rise-temp");
+            icon.appendChild(iconSVG);
+
+            forecastDiv.appendChild(icon);
+
+            const temp = document.createElement("div");
+            temp.classList.add("forecast-hour-temp");
+
+            temp.textContent = "Sunrise";
+
+            forecastDiv.appendChild(temp);
+          }
+          if(getHours(sunset) === getHours(arrayOfHours[i].date) && !displayedSunset)
+          {
+            const forecastDiv = document.createElement("div");
+            forecastDiv.classList.add("forecast-hour");
+            forecast.appendChild(forecastDiv);
+
+            const time = document.createElement("div");
+            time.classList.add("forecast-hour-time");
+
+            const timeText = format(sunset,"h:mm a");
+            time.textContent = timeText;
+
+            forecastDiv.appendChild(time);
+
+            const icon = document.createElement("div");
+            icon.classList.add("forecast-hour-icon");
+
+            const iconSVG = createIconSvg("sun-set-temp");
+            icon.appendChild(iconSVG);
+
+            forecastDiv.appendChild(icon);
+
+            const temp = document.createElement("div");
+            temp.classList.add("forecast-hour-temp");
+
+            temp.textContent = "Sunset";
+
+            forecastDiv.appendChild(temp);
+
+            displayedSunset = true;
+          }
       }
     };
 

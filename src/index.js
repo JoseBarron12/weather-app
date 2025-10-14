@@ -31,7 +31,7 @@ localStorage.setItem("currentWeather", savedWeatherData);*/
 
 /*
 const getWeather = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
+    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-19/?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
     const weatherData = await response.json();
     const savedWeatherData = JSON.stringify(weatherData);
 
@@ -76,9 +76,10 @@ const weatherSavedData = JSON.parse(localStorage.getItem("currentWeather"));
 
 const weather = new WeatherData(weatherSavedData);
 
+console.log(weather)
 display.header(weather);
 
-display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast);
+display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast, weather);
 
 display.upcomingForecast(weather.upcomingForecast);
 
