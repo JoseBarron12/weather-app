@@ -303,6 +303,10 @@ main {
   width: 32px;
 }
 
+.forecast-day-icon {
+  position: relative;
+}
+
 
 .icon-precipitation {
   position: relative;
@@ -311,9 +315,9 @@ main {
 
 .precip-probability {
   position: absolute;
-  left: 70px;
+  left: -1.5px;
   font-size: 0.75rem;
-  top: 22px;
+  top: 14px;
   font-weight: bold;
 }
 

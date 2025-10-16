@@ -210,7 +210,7 @@ export const display = (function() {
             textDiv.textContent = arrayOfDays[i].precipProb + "%";
 
             iconSVG.classList.add("icon-precipitation");
-            forecastDiv.appendChild(textDiv);
+            icon.appendChild(textDiv);
 
           }
 
