@@ -285,6 +285,7 @@ main {
   gap: 32px;
   font-weight: bold;
   padding: 8px 0px;
+  position: relative;
 }
 
 .forecast-day-time {
@@ -301,6 +302,21 @@ main {
 {
   width: 32px;
 }
+
+
+.icon-precipitation {
+  position: relative;
+  top: -6px;
+}
+
+.precip-probability {
+  position: absolute;
+  left: 70px;
+  font-size: 0.75rem;
+  top: 22px;
+  font-weight: bold;
+}
+
 
 .temp-slider {
   flex-grow: 1;
@@ -496,8 +512,9 @@ footer > div {
 }
 
 .icon {
-    height: 24px;
-    width: auto;
+  height: 24px;
+  width: auto;
+  position: relative;
 }
 
 .menu > svg {

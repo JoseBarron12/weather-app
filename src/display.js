@@ -203,6 +203,18 @@ export const display = (function() {
 
           forecastDiv.appendChild(icon);
 
+          if(arrayOfDays[i].precipProb >= 30)
+          {
+            const textDiv = document.createElement("div");
+            textDiv.classList.add("precip-probability");
+            textDiv.textContent = arrayOfDays[i].precipProb + "%";
+
+            iconSVG.classList.add("icon-precipitation");
+            forecastDiv.appendChild(textDiv);
+
+          }
+
+
           const tempDiv = document.createElement("div");
           tempDiv.classList.add("forecast-day-temps");
 

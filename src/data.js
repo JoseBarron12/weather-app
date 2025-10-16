@@ -18,7 +18,8 @@ class WeatherData {
                 Math.round(day.tempmin),
                 Math.round(day.temp),
                 Math.round(day.tempmax),
-                day.icon, fromUnixTime(day.sunriseEpoch)
+                day.icon, fromUnixTime(day.sunriseEpoch),
+                day.precipprob
             );
 
             this.fifteenDayForecast.push(dayData);
@@ -211,7 +212,7 @@ class WeatherData {
 }
 
 class IndividualWeatherData{
-    constructor(date, tempMin, temp, tempMax, icon, sunrise)
+    constructor(date, tempMin, temp, tempMax, icon, sunrise, precipProb)
     {
         this._date = date;
         this._tempMin = tempMin;
@@ -219,6 +220,7 @@ class IndividualWeatherData{
         this._tempMax = tempMax;
         this._icon = icon;
         this._sunrise = sunrise;
+        this._precipProb = precipProb;
     }
 
     get date() {
@@ -243,6 +245,10 @@ class IndividualWeatherData{
 
     get sunrise() {
         return this._sunrise;
+    }
+
+    get precipProb() {
+        return this._precipProb;
     }
 }
 
