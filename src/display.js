@@ -211,7 +211,6 @@ export const display = (function() {
 
             iconSVG.classList.add("icon-precipitation");
             icon.appendChild(textDiv);
-
           }
 
 

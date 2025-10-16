@@ -496,10 +496,11 @@ footer{
     display: flex;
     width: 100%;
     border-top: 1px solid var(--border-color);
-    padding: 16px;
-    justify-content: space-between;
+    padding: 16px 22px;
+    justify-content: center;
     color: var(--text);
     fill: var(--text);
+    position: relative;
 }
 
 footer > div {
@@ -521,9 +522,29 @@ footer > div {
   position: relative;
 }
 
+.page-slider {
+  display: flex;
+  gap: 8px;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  fill: rgba(255, 255, 255, 0.541);
+}
+
+.current-circle {
+  fill: var(--text);
+}
+.menu {
+  position: absolute;
+  top: 8px;
+  right: 22px;
+}
+
 .menu > svg {
     transform: rotate(180deg);
-    height: 32px;
+    height: 28px;
     width: auto;
 }
 
