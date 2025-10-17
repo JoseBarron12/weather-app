@@ -2,6 +2,7 @@ import "./styles.css";
 import { WeatherData } from "./data";
 import { display } from "./display";
 import { createIconSvg } from "./icon";
+import { callAPI} from "./async";
 /*
 const getWeather = async () => {
     const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
@@ -107,17 +108,11 @@ display.average(weather);
 
 const airQualityData = JSON.parse(localStorage.getItem("currentAirQuality"));
 
-console.log(airQualityData);
-
 weather.airQuality = airQualityData;
-
-console.log(weather.airQuality);
 
 display.airQuality(weather);
 
 const moonData = JSON.parse(localStorage.getItem("currentMoon"));
-
-console.log(moonData);
 
 weather.moonPhase = moonData;
 
@@ -200,3 +195,5 @@ for(let i = 0; i < 5; i++)
         circleSection.appendChild(svg);
     }
 }
+
+//callAPI.allWeatherData("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-11/?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
