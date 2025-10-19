@@ -78,39 +78,14 @@ const weatherSavedData = JSON.parse(localStorage.getItem("currentWeather"));
 const weather = new WeatherData(weatherSavedData);
 
 console.log(weather)
-display.header(weather);
-
-display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast, weather);
-
-display.upcomingForecast(weather.upcomingForecast);
-
-display.feelsLike(weather);
-
-display.uvIndex(weather);
-
-display.wind(weather);
-
-display.sun(weather);
-
-display.precipitation(weather);
-
-display.visibility(weather);
-
-display.humidity(weather);
-
-display.pressure(weather);
 
 const savedAverageWeatherData = JSON.parse(localStorage.getItem("currentAverageWeather"));
 
 weather.averageHighTemp = savedAverageWeatherData;
 
-display.average(weather);
-
 const airQualityData = JSON.parse(localStorage.getItem("currentAirQuality"));
 
 weather.airQuality = airQualityData;
-
-display.airQuality(weather);
 
 const moonData = JSON.parse(localStorage.getItem("currentMoon"));
 
@@ -122,7 +97,8 @@ weather.moonSet = moonData;
 
 weather.moonDuration = moonData;
 
-display.moon(weather);
+display.fullPage(weather);
+
 
 
 let mouseDown = false;

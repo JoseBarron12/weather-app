@@ -42,7 +42,6 @@ const getWindDirection = (dir) => {
   }
 }
 
-
 export const display = (function() {
     const header = (weatherDataObj) => {
         const locationName = document.querySelector(".location-name>p");
@@ -456,7 +455,7 @@ export const display = (function() {
         airDesc.textContent = "Very Unhealthy";
       }
 
-    }
+    };
 
     const moon =(weatherDataObj) => {
       const moonPhase = weatherDataObj.moonPhase;
@@ -514,9 +513,38 @@ export const display = (function() {
       const moonDuration = document.querySelector(".moon-duration>.text");
       moonDuration.textContent = weatherDataObj.moonDuration  + " hours" 
 
-    }
+    };
 
-    
+    const fullPage = (weather) => {
+      display.header(weather);
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon}
+      display.twentyFourHourForecast(weather.getDescription(), weather.todayForecast, weather);
+
+      display.upcomingForecast(weather.upcomingForecast);
+
+      display.feelsLike(weather);
+
+      display.uvIndex(weather);
+
+      display.wind(weather);
+
+      display.sun(weather);
+
+      display.precipitation(weather);
+
+      display.visibility(weather);
+
+      display.humidity(weather);
+
+      display.pressure(weather);
+
+      display.average(weather);
+
+      display.airQuality(weather);
+
+      display.moon(weather);
+    };
+
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage}
 })();
