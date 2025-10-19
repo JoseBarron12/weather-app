@@ -4,75 +4,6 @@ import { display } from "./display";
 import { createIconSvg } from "./icon";
 import { callAPI} from "./async";
 import { format, addDays, startOfTomorrow } from "date-fns";
-/*
-const getWeather = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
-    const weatherData = await response.json();
-    const weatherClass = new WeatherData(weatherData);
-    return weatherClass;
-}
-const weather = await getWeather();
-
-display.header(weather);
-
-console.log(weather.data);
-
-console.log(weather.getLocationName());
-
-console.log(weather.getCurrentTemp());
-
-console.log(weather.getCurrentCondition());
-
-console.log(weather.getMaxTemp());
-
-console.log(weather.getMinTemp());
-const savedWeatherData = JSON.stringify(weatherData);
-
-localStorage.setItem("currentWeather", savedWeatherData);*/
-
-
-/*
-const getWeather = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-19/?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
-    const weatherData = await response.json();
-    const savedWeatherData = JSON.stringify(weatherData);
-
-    localStorage.setItem("currentWeather", savedWeatherData);
-}
-
-getWeather();
-
-const getAverageWeather = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/?key=58BNGSSDKDUY7PYBE3E3WZ3TV&include=stats");
-    const weatherData = await response.json();
-    const savedWeatherData = JSON.stringify(weatherData);
-
-    localStorage.setItem("currentAverageWeather", savedWeatherData);
-}
-
-getAverageWeather();
-
-const getAirQuality = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/?key=58BNGSSDKDUY7PYBE3E3WZ3TV&elements=aqius");
-    const weatherData = await response.json();
-    const savedWeatherData = JSON.stringify(weatherData);
-
-    localStorage.setItem("currentAirQuality", savedWeatherData);
-}
-
-getAirQuality();
-
-const getMoon = async () => {
-    const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-11/?key=58BNGSSDKDUY7PYBE3E3WZ3TV&elements=moonphase,moonriseEpoch,moonsetEpoch");
-    const weatherData = await response.json();
-    const savedWeatherData = JSON.stringify(weatherData);
-
-    localStorage.setItem("currentMoon", savedWeatherData);
-}
-
-getMoon();
-
-*/
 
 let mouseDown = false;
 let startX, scrollLeft;
@@ -144,25 +75,5 @@ for(let i = 0; i < 5; i++)
         circleSection.appendChild(svg);
     }
 }
-
-//callAPI.allWeatherData("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-11/?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
-
-
-const getFormattedTdyDate = () => {
-    return format(new Date(), 'yyyy-MM-dd');
-};
-
-const getFormattedTmrDate = () => {
-    return format(startOfTomorrow(), 'yyyy-MM-dd');
-};
-
-const getFormattedTenDate = () => {
-    return format(addDays(new Date(), 9), 'yyyy-MM-dd');
-};
-
-console.log(getFormattedTdyDate());
-console.log(getFormattedTmrDate());
-console.log(getFormattedTenDate());
-
 
 callAPI.allWeatherData("palatine");
