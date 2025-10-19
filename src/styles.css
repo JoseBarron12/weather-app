@@ -75,7 +75,6 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
-  font-family: "Noto Sans Osage";
   font-weight: 700;
 }
 
@@ -579,4 +578,13 @@ footer > div {
 .right {
   right: 0px;
   top: calc(50% - 48px);
+}
+
+dialog {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  border: none;
+  color: var(--text);
+  font-family: 'SF Pro Display';
 }
