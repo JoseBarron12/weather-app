@@ -74,34 +74,6 @@ getMoon();
 
 */
 
-const weatherSavedData = JSON.parse(localStorage.getItem("currentWeather"));
-
-const weather = new WeatherData(weatherSavedData);
-
-console.log(weather)
-
-const savedAverageWeatherData = JSON.parse(localStorage.getItem("currentAverageWeather"));
-
-weather.averageHighTemp = savedAverageWeatherData;
-
-const airQualityData = JSON.parse(localStorage.getItem("currentAirQuality"));
-
-weather.airQuality = airQualityData;
-
-const moonData = JSON.parse(localStorage.getItem("currentMoon"));
-
-weather.moonPhase = moonData;
-
-weather.moonRise = moonData;
-
-weather.moonSet = moonData;
-
-weather.moonDuration = moonData;
-
-display.fullPage(weather);
-
-
-
 let mouseDown = false;
 let startX, scrollLeft;
 const slider = document.querySelector('.hour-data');
@@ -191,3 +163,6 @@ const getFormattedTenDate = () => {
 console.log(getFormattedTdyDate());
 console.log(getFormattedTmrDate());
 console.log(getFormattedTenDate());
+
+
+callAPI.allWeatherData("palatine");

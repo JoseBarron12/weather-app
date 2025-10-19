@@ -19,7 +19,7 @@ class WeatherData {
                 Math.round(day.temp),
                 Math.round(day.tempmax),
                 day.icon, fromUnixTime(day.sunriseEpoch),
-                day.precipprob
+                Math.round(day.precipprob)
             );
 
             this.fifteenDayForecast.push(dayData);
