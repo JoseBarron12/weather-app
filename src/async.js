@@ -1,3 +1,15 @@
+const getFormattedTdyDate = () => {
+    return format(new Date(), 'yyyy-MM-dd');
+};
+
+const getFormattedTmrDate = () => {
+    return format(startOfTomorrow(), 'yyyy-MM-dd');
+};
+
+const getFormattedTenDate = () => {
+    return format(addDays(new Date(), 9), 'yyyy-MM-dd');
+};
+
 export const callAPI = (function() {
     const weather = async (url) => {
         try {

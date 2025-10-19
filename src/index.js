@@ -3,6 +3,7 @@ import { WeatherData } from "./data";
 import { display } from "./display";
 import { createIconSvg } from "./icon";
 import { callAPI} from "./async";
+import { format, addDays, startOfTomorrow } from "date-fns";
 /*
 const getWeather = async () => {
     const response = await fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
@@ -173,3 +174,20 @@ for(let i = 0; i < 5; i++)
 }
 
 //callAPI.allWeatherData("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/palatine/2025-10-10/2025-10-11/?key=58BNGSSDKDUY7PYBE3E3WZ3TV");
+
+
+const getFormattedTdyDate = () => {
+    return format(new Date(), 'yyyy-MM-dd');
+};
+
+const getFormattedTmrDate = () => {
+    return format(startOfTomorrow(), 'yyyy-MM-dd');
+};
+
+const getFormattedTenDate = () => {
+    return format(addDays(new Date(), 9), 'yyyy-MM-dd');
+};
+
+console.log(getFormattedTdyDate());
+console.log(getFormattedTmrDate());
+console.log(getFormattedTenDate());
