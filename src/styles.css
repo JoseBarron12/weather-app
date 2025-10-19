@@ -587,4 +587,71 @@ dialog {
   border: none;
   color: var(--text);
   font-family: 'SF Pro Display';
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-locations > svg {
+  fill: var(--text);
+  width: 28px;
+  height: 28px;
+  justify-self: flex-end;
+}
+
+dialog > h1 {
+  margin: -16px 0px;
+}
+
+dialog > label {
+  display: flex;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--border-color);
+  padding: 8px;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+}
+
+dialog > label > svg {
+  fill: rgba(255, 255, 255, 0.459);
+  width: 24px;
+  height: 24px;
+} 
+
+dialog > label >input {
+  border: none;
+  background: none;
+  width: 100%;
+  color: var(--text);
+}
+
+dialog > label > input::placeholder {
+  color: rgba(255, 255, 255, 0.459);
+}
+
+dialog > label > input:active, dialog > label > input:focus {
+  outline: none;
+}
+
+dialog > label > input::-webkit-search-cancel-button 
+{ 
+  appearance: none;
+}
+
+
+.locations {
+  flex-grow: 1;
+  overflow-y: hidden;
+  display: grid;
+  grid-auto-rows: 125px;
+  gap: 16px;
+}
+
+
+.location {
+  background-color:blue;
+  border-radius: 16px;
 }
