@@ -420,7 +420,8 @@ export const display = (function() {
       highAvg.textContent = `H:${weatherDataObj.averageHighTemp}` + "\u00B0";
 
       const difference = document.querySelector(".average-value");
-      difference.textContent = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp + "\u00B0";
+      const sign = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp > 0 ? "+" : "";
+      difference.textContent = sign + weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp + "\u00B0";
 
     };
 

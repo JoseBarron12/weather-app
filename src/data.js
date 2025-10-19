@@ -131,7 +131,7 @@ class WeatherData {
     }
 
     getAmountOfPrecipitation() {
-        return this._data.currentConditions.precip;
+        return this._data.days[0].precip;
     }
 
     getChanceOfPrecipitation() {
@@ -199,10 +199,7 @@ class WeatherData {
     }
 
     set moonDuration(data) {
-        const moonRise = fromUnixTime(data.days[0].moonriseEpoch);
-        const moonSet = fromUnixTime(data.days[1].moonsetEpoch);
-
-        this._moonDuration = differenceInHours(moonSet, moonRise);
+        this._moonDuration = differenceInHours(this._moonSet, this._moonRise);
     }
 
     get moonDuration() {
