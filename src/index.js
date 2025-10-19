@@ -76,4 +76,4 @@ for(let i = 0; i < 5; i++)
     }
 }
 
-callAPI.allWeatherData("palatine");
+//callAPI.allWeatherData("palatine");

@@ -1,4 +1,5 @@
 import { differenceInHours, differenceInMinutes, fromUnixTime, getHours } from "date-fns";
+import { id } from "date-fns/locale";
 
 class WeatherData {
     
@@ -249,6 +250,85 @@ class IndividualWeatherData{
     }
 }
 
+class WeatherLocation {
+    constructor(name, time, temp, tempMin, tempMax, desc, isCurrentLoc)
+    {
+        this._id = crypto.randomUUID();
+        this._name = name;
+        this._time = time;
+        this._temp = temp;
+        this._tempMin = tempMin;
+        this._tempMax = tempMax;
+        this._desc = desc;
+        this._isCurrentLoc = isCurrentLoc;
+    };
+
+    get Id() {
+        return this._id;
+    }
+
+    set Id(newId) {
+        this._id = newId;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(newName) {
+        this._name = newName;
+    }
+
+    get time() {
+        return this._time;
+    }
+
+    set time(newTime) {
+        this._time = newTime;
+    }
+
+    get temp() {
+        return this._temp;
+    }
+
+    set temp(newTemp) {
+        this._temp = newTemp;
+    }
+
+    get tempMin() {
+        return this._tempMin;
+    }
+
+    set tempMin(newTemp) {
+        this._tempMin = newTemp;
+    }
+
+    get tempMax() {
+        return this._tempMax;
+    }
+
+    set tempMax(newTemp) {
+        this._tempMax = newTemp;
+    }
+
+    get desc() {
+        return this._desc;
+    }
+
+    set desc(newDesc) {
+        this._desc = newDesc;
+    }
+
+    get isCurrentLoc() {
+        return this.isCurrentLoc;
+    }
+
+    set isCurrentLoc(newFlag) {
+        this._isCurrentLoc = newFlag;
+    }
+
+}
 
 
-export {WeatherData, IndividualWeatherData}
+
+export {WeatherData, IndividualWeatherData, WeatherLocation}
