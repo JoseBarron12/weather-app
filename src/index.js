@@ -3,7 +3,7 @@ import { WeatherData } from "./data";
 import { display } from "./display";
 import { createIconSvg } from "./icon";
 import { callAPI} from "./async";
-import { format, addDays, startOfTomorrow } from "date-fns";
+import { format, addDays, startOfTomorrow, getHours } from "date-fns";
 
 let mouseDown = false;
 let startX, scrollLeft;
@@ -77,3 +77,77 @@ for(let i = 0; i < 5; i++)
 }
 
 //callAPI.allWeatherData("palatine");
+
+function getSkyGradient(time, sunrise = 6, sunset = 18, isClear = true) {
+  const hour = typeof time === "number" ? time : new Date(time).getHours() + new Date(time).getMinutes() / 60;
+
+  const gradients = {
+    night: isClear
+      ? ["#0B132B", "#1C2541"]
+      : ["#1F2937", "#374151"],
+    dawn: isClear
+      ? ["#D2691E", "#FFD580"]
+      : ["#4A4A4A", "#A0A0A0"],
+    day: isClear
+      ? ["#0077BE", "#B0E0E6"]
+      : ["#64748B", "#A8A8A8"],
+    sunset: isClear
+      ? ["#8B0000", "#FFB347"]
+      : ["#5A5A5A", "#A9A9A9"]
+  };
+
+  let topColor, bottomColor;
+
+  // Determine which time segment we're in
+  if (hour < sunrise - 0.5) {
+    // Before dawn
+    [topColor, bottomColor] = gradients.night;
+  } else if (hour < sunrise + 1) {
+    // Dawn blend
+    const t = (hour - (sunrise - 0.5)) / 1.5;
+    [topColor, bottomColor] = blendGradients(gradients.night, gradients.dawn, t);
+  } else if (hour < (sunrise + sunset) / 2) {
+    // Morning/day transition
+    const t = (hour - (sunrise + 1)) / ((sunset - sunrise) / 2 - 1);
+    [topColor, bottomColor] = blendGradients(gradients.dawn, gradients.day, t);
+  } else if (hour < sunset - 0.5) {
+    // Afternoon
+    const t = (hour - (sunrise + sunset) / 2) / ((sunset - sunrise) / 2 - 0.5);
+    [topColor, bottomColor] = blendGradients(gradients.day, gradients.sunset, t);
+  } else if (hour < sunset + 1) {
+    // Sunset blend
+    const t = (hour - (sunset - 0.5)) / 1.5;
+    [topColor, bottomColor] = blendGradients(gradients.sunset, gradients.night, t);
+  } else {
+    // After dark
+    [topColor, bottomColor] = gradients.night;
+  }
+
+  return `linear-gradient(to bottom, ${topColor}, ${bottomColor})`;
+}
+function blendGradients([c1Top, c1Bottom], [c2Top, c2Bottom], t) {
+  const mix = (a, b, t) => {
+    const ar = parseInt(a.slice(1, 3), 16),
+      ag = parseInt(a.slice(3, 5), 16),
+      ab = parseInt(a.slice(5, 7), 16);
+    const br = parseInt(b.slice(1, 3), 16),
+      bg = parseInt(b.slice(3, 5), 16),
+      bb = parseInt(b.slice(5, 7), 16);
+    const r = Math.round(ar + (br - ar) * t).toString(16).padStart(2, "0");
+    const g = Math.round(ag + (bg - ag) * t).toString(16).padStart(2, "0");
+    const b_ = Math.round(ab + (bb - ab) * t).toString(16).padStart(2, "0");
+    return `#${r}${g}${b_}`;
+  };
+
+  return [
+    mix(c1Top, c2Top, Math.min(Math.max(t, 0), 1)),
+    mix(c1Bottom, c2Bottom, Math.min(Math.max(t, 0), 1))
+  ];
+}
+const body = document.querySelector("body");
+
+body.style.background = getSkyGradient(new Date(), true);
+
+const location = document.querySelector(".location");
+
+location.style.background = getSkyGradient(12, true);
