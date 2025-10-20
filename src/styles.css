@@ -593,15 +593,52 @@ dialog {
   gap: 16px;
 }
 
+
 .edit-locations > svg {
   fill: var(--text);
   width: 28px;
   height: 28px;
   justify-self: flex-end;
+  cursor: grab;
+}
+
+.drop-down-menu {
+    background-color: #262626;
+    display: none;
+    position: absolute;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+    color: var(--text);
+    list-style-type: none;
+    cursor: grab;
+    border-radius: 8px;
+    font-family: 'SF Pro Display';
+}
+
+.drop-down-option {
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  justify-content: space-between;
+}
+
+.drop-down-option > svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--text);
+}
+
+.drop-down-option:not(:last-of-type)
+{
+  border-bottom: 1px solid var(--border-color);
+
 }
 
 dialog > h1 {
   margin: -16px 0px;
+  position: relative;
 }
 
 dialog > label {

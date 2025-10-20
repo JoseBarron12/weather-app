@@ -4,6 +4,7 @@ import { display } from "./display";
 import { createIconSvg } from "./icon";
 import { callAPI} from "./async";
 import { format, addDays, startOfTomorrow, getHours } from "date-fns";
+import { he } from "date-fns/locale";
 
 let mouseDown = false;
 let startX, scrollLeft;
@@ -151,3 +152,45 @@ body.style.background = getSkyGradient(new Date(), true);
 const location = document.querySelector(".location");
 
 location.style.background = getSkyGradient(12, true);
+
+const dropDownFunctionality = (parent, height) => {
+
+    const isOpen = parent.classList.toggle("isOpen");
+
+    const dropDownMenu = parent.nextElementSibling;
+    dropDownMenu.style.top = `${height}px`;
+    dropDownMenu.style.right = `16px`;
+
+    if(isOpen) {
+        dropDownMenu.style.display = "block";
+    }
+    else {
+        dropDownMenu.style.display = "none";
+    }
+
+    const newBtn = dropDownMenu.cloneNode(true);
+    dropDownMenu.parentNode.replaceChild(newBtn, dropDownMenu);
+    
+    newBtn.addEventListener("mouseleave", () => {
+        newBtn.style.display = "none";
+        parent.classList.remove("isOpen");
+    });
+
+    newBtn.addEventListener("click", () => {
+        newBtn.style.display = "none";
+        parent.classList.remove("isOpen");
+    });
+
+}
+
+const btn = document.querySelector(".drop-down-btn");
+
+btn.addEventListener("click", () => {
+    const rect = btn.getBoundingClientRect();   
+    dropDownFunctionality(btn, rect.width + 8 + rect.top);
+    });
+
+    btn.addEventListener("mouseenter", () => {
+    const rect = btn.getBoundingClientRect();  
+    dropDownFunctionality(btn, rect.width + 8 + rect.top);
+});
