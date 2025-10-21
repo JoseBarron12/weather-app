@@ -184,7 +184,7 @@ console.log(weatherDatas);
 
 
 const locations = document.querySelector(".locations");
-
+const weatherClassData = [];
 
 weatherDatas.forEach((data, index) => {
   
@@ -198,6 +198,7 @@ weatherDatas.forEach((data, index) => {
   weatherData.setAverageHighTemp(data._averageHighTemp);
 
   console.log(weatherData);
+  weatherClassData.push(weatherData);
   display.location(weatherData,locations,dialog);
 
   if(index == 0)
@@ -209,7 +210,7 @@ weatherDatas.forEach((data, index) => {
 
 const circleSection = document.querySelector(".page-slider");
 
-for(let i = 0; i < weatherDatas.length; i++)
+for(let i = 0; i < weatherClassData.length; i++)
 {
     if(i === 0) {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -249,3 +250,38 @@ for(let i = 0; i < weatherDatas.length; i++)
         circleSection.appendChild(svg);
     }
 }
+
+
+const leftIcon = document.querySelector(".left");
+
+let currentPage = 0;
+
+
+leftIcon.addEventListener("click", () => {
+  
+  if(currentPage == 0)
+  {
+    currentPage = weatherClassData.length - 1;
+  }
+  else
+  {
+    currentPage--;
+  }
+  console.log(currentPage)
+  display.fullPage(weatherClassData[currentPage]);
+  
+});
+
+const rightIcon = document.querySelector(".right");
+
+rightIcon.addEventListener("click", () => {
+  if(currentPage == weatherClassData.length - 1)
+  {
+    currentPage = 0;
+  }
+  else
+  {
+    currentPage++
+  }
+  display.fullPage(weatherClassData[currentPage]);
+})
