@@ -1,4 +1,4 @@
-import { hu, te } from "date-fns/locale";
+import { he, hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
 import { compareAsc, format, getHours } from "date-fns";
@@ -546,6 +546,58 @@ export const display = (function() {
       display.moon(weather);
     };
 
+    const location = (weatherDataObj, parent) => {
+      const locationDiv = document.createElement("div");
+      locationDiv.classList.add("location");
+      parent.appendChild(locationDiv);
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage}
+      const header = document.createElement("div");
+      header.classList.add("location-header");
+      locationDiv.appendChild(header);
+
+      const info = document.createElement("div");
+      info.classList.add("location-info");
+      header.appendChild(info);
+
+      const name = document.createElement("div");
+      name.classList.add("name-location");
+      name.textContent = toUpperCaseFirstChar(weatherDataObj.getLocationName());
+      info.appendChild(name);
+
+      const time = document.createElement("div");
+      time.classList.add("time-location");
+      time.textContent = format(weatherDataObj.getCurrentDateTime(), "h:mm a");
+      info.appendChild(time);
+
+      const temp = document.createElement("div");
+      temp.classList.add("location-temp");
+      temp.textContent = weatherDataObj.getCurrentTemp() + "\u00B0";
+      header.appendChild(temp);
+
+      const desc = document.createElement("div");
+      desc.classList.add("location-desc");
+      locationDiv.appendChild(desc);
+
+      const condition = document.createElement("div");
+      condition.classList.add("location-condition");
+      condition.textContent = weatherDataObj.getCurrentCondition();
+      desc.appendChild(condition);
+
+      const tempRange = document.createElement("div");
+      tempRange.classList.add("location-temp-range");
+      desc.appendChild(tempRange);
+
+      const high = document.createElement("div");
+      high.classList.add("high");
+      high.textContent = `H:${weatherDataObj.getMaxTemp()}\u00B0`;
+      tempRange.appendChild(high);
+
+      const low= document.createElement("div");
+      low.classList.add("low");
+      low.textContent = `L:${weatherDataObj.getMinTemp()}\u00B0`;
+      tempRange.appendChild(low);
+    }
+
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location}
 })();

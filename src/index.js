@@ -1,4 +1,6 @@
 import { callAPI } from "./async";
+import { WeatherData } from "./data";
+import { display } from "./display";
 import "./styles.css";
 
 let mouseDown = false;
@@ -144,9 +146,6 @@ const body = document.querySelector("body");
 
 body.style.background = getSkyGradient(new Date(), true);
 
-const location = document.querySelector(".location");
-
-location.style.background = getSkyGradient(12, true);
 
 const dropDownFunctionality = (parent, height) => {
     const isOpen = parent.classList.toggle("isOpen");
@@ -207,13 +206,6 @@ searchExitBtn.addEventListener("click", () => {
 })
 
 
-const locations = document.querySelectorAll(".location");
-
-locations.forEach((location) => {
-  location.addEventListener("click", () => {
-    dialog.close();
-  })
-});
 
 //callAPI.weather("jamal")
 
@@ -232,3 +224,12 @@ defaultLocations.forEach((location, index) => {
 }) */
 const weatherDatas = JSON.parse(localStorage.getItem("locations"));
 console.log(weatherDatas);
+
+
+const locations = document.querySelector(".locations");
+
+weatherDatas.forEach((data) => {
+  const weatherData = new WeatherData(data._data)
+  console.log(weatherData);
+  display.location(weatherData,locations);
+});
