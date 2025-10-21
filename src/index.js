@@ -210,3 +210,12 @@ const searchExitBtn = dialog.querySelector(".search-cancel");
 searchExitBtn.addEventListener("click", () => {
   searchWindow.style.display = "none";
 })
+
+
+const locations = document.querySelectorAll(".location");
+
+locations.forEach((location) => {
+  location.addEventListener("click", () => {
+    dialog.close();
+  })
+});
