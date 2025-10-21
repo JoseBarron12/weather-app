@@ -1,7 +1,7 @@
 import { he, hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
-import { compareAsc, format, getHours } from "date-fns";
+import { compareAsc, format, getHours, addHours} from "date-fns";
 
 const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -588,7 +588,6 @@ export const display = (function() {
         currentMoon.textContent = "WANING CRESCENT";
       }
       
-      console.log(weatherDataObj.moonRise);
       const moonRise = document.querySelector(".moon-rise>.text");
       moonRise.textContent = format(weatherDataObj.moonRise,"h:mm a");
 
@@ -643,10 +642,13 @@ export const display = (function() {
 
       parent.appendChild(locationDiv);
 
+      const localTime = addHours(weatherDataObj.getCurrentDateTime(),weatherDataObj._data.tzoffset)
+      console.log(localTime);
+
       const sunriseHr = weatherDataObj.getSunrise().getHours() + weatherDataObj.getSunrise().getMinutes() / 60;
       const sunsetHr  = weatherDataObj.getSunset().getHours() + weatherDataObj.getSunset().getMinutes() / 60;
 
-      locationDiv.style.background = getSkyGradient(weatherDataObj.getCurrentDateTime(), sunriseHr, sunsetHr, true);
+      locationDiv.style.background = getSkyGradient(localTime, sunriseHr, sunsetHr, true);
 
       const header = document.createElement("div");
       header.classList.add("location-header");

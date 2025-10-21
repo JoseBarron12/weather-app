@@ -1,6 +1,7 @@
 import { callAPI } from "./async";
 import { WeatherData } from "./data";
 import { display } from "./display";
+import { addHours, isDate } from "date-fns";
 import "./styles.css";
 
 let mouseDown = false;
@@ -126,6 +127,8 @@ weatherDatas.forEach((data, index) => {
   
   weatherData.setAirQuality(25);
   weatherData.setAverageHighTemp(data._averageHighTemp);
+
+  //console.log(addHours(weatherData.getCurrentDateTime(),data._data.tzoffset));
 
   weatherClassData.push(weatherData);
   display.location(weatherData,locations,dialog);
