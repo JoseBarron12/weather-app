@@ -78,12 +78,12 @@ export const display = (function() {
         sunrise = weatherDataObj.fifteenDayForecast[1].sunrise;
       }
 
-      console.log(getHours(sunrise));
 
       let displayedSunset = false;
       let displaySunrise = false;
 
       const forecast = document.querySelector(".hour-data");
+      forecast.replaceChildren();
       for(let i = 0; i < arrayOfHours.length; i++)
       {
           const forecastDiv = document.createElement("div");
@@ -179,7 +179,8 @@ export const display = (function() {
 
     const upcomingForecast = (arrayOfDays) => {
       const forecast = document.querySelector(".day-data");
-
+      forecast.replaceChildren()
+      
       for(let i = 0; i <  arrayOfDays.length; i++)
       {
           const forecastDiv = document.createElement("div");
@@ -315,6 +316,13 @@ export const display = (function() {
       const title = document.querySelector(".sun-title");
       const currentSun = title.querySelector(".current-sun");
       
+      const currentIcon = document.querySelector(".sun-title>svg");
+
+      if(currentIcon !== null)
+      {
+        currentIcon.remove()
+      }
+
       const currentSunValue = document.querySelector(".sun-value");
       const pastSun = document.querySelector(".sun-title-desc");
 
@@ -325,7 +333,7 @@ export const display = (function() {
       {
         title.insertBefore(createIconSvg("sun-rise"),currentSun);
         
-        const sunrise = weatherDataObj.this.fifteenDayForecast[1].sunrise;
+        const sunrise = weatherDataObj.fifteenDayForecast[1].sunrise;
         
         currentSun.textContent = "SUNRISE";
         currentSunValue.textContent = format(sunrise,"h:mm a");
@@ -420,8 +428,9 @@ export const display = (function() {
       highAvg.textContent = `H:${weatherDataObj.averageHighTemp}` + "\u00B0";
 
       const difference = document.querySelector(".average-value");
-      const sign = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp > 0 ? "+" : "";
-      difference.textContent = sign + weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp + "\u00B0";
+      const differenceText = weatherDataObj.getMaxTemp() - weatherDataObj.averageHighTemp;
+      const sign = differenceText > 0 ? "+" : "";
+      difference.textContent = sign + differenceText + "\u00B0";
 
     };
 
@@ -464,6 +473,12 @@ export const display = (function() {
       const title = document.querySelector(".moon-title");
       const currentMoon = title.querySelector(".moon-phase");
 
+      const currentIcon = document.querySelector(".moon-title>svg");
+      if(currentIcon !== null)
+      {
+        currentIcon.remove();
+      }
+
       if(moonPhase == 0)
       {
         title.insertBefore(createIconSvg("new-moon"),currentMoon);
@@ -505,6 +520,7 @@ export const display = (function() {
         currentMoon.textContent = "WANING CRESCENT";
       }
       
+      console.log(weatherDataObj.moonRise);
       const moonRise = document.querySelector(".moon-rise>.text");
       moonRise.textContent = format(weatherDataObj.moonRise,"h:mm a");
 
@@ -546,7 +562,7 @@ export const display = (function() {
       display.moon(weather);
     };
 
-    const location = (weatherDataObj, parent) => {
+    const location = (weatherDataObj, parent, window) => {
       const locationDiv = document.createElement("div");
       locationDiv.classList.add("location");
       parent.appendChild(locationDiv);
@@ -592,10 +608,15 @@ export const display = (function() {
       high.textContent = `H:${weatherDataObj.getMaxTemp()}\u00B0`;
       tempRange.appendChild(high);
 
-      const low= document.createElement("div");
+      const low = document.createElement("div");
       low.classList.add("low");
       low.textContent = `L:${weatherDataObj.getMinTemp()}\u00B0`;
       tempRange.appendChild(low);
+
+      locationDiv.addEventListener("click", () => {
+        display.fullPage(weatherDataObj);
+        window.close();
+      })
     }
 
 

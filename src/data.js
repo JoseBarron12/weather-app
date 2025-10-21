@@ -207,6 +207,30 @@ class WeatherData {
         return this._moonDuration;
     }
 
+    setAverageHighTemp(newTemp) {
+        this._averageHighTemp = newTemp
+    }
+
+    setMoonRise(newDate) {
+        this._moonRise = newDate;
+    }
+
+    setMoonSet(newDate) {
+        this._moonSet = newDate;
+    }
+
+    setMoonDuration(newDuration) {
+        this._moonDuration = newDuration;
+    }
+
+    setMoonPhase(newPhase) {
+        this._moonPhase = newPhase;
+    }
+
+    setAirQuality(newQuality) {
+        this._airQuality = newQuality;
+    }
+
 }
 
 class IndividualWeatherData{

@@ -230,6 +230,14 @@ const locations = document.querySelector(".locations");
 
 weatherDatas.forEach((data) => {
   const weatherData = new WeatherData(data._data)
+  weatherData.setMoonDuration(data._moonDuration);
+  weatherData.setMoonPhase(data._moonPhase);
+  weatherData.setMoonRise(new Date(data._moonRise));
+  weatherData.setMoonSet(new Date(data._moonSet));
+  
+  weatherData.setAirQuality(25);
+  weatherData.setAverageHighTemp(data._averageHighTemp);
+
   console.log(weatherData);
-  display.location(weatherData,locations);
+  display.location(weatherData,locations,dialog);
 });
