@@ -708,7 +708,6 @@ input::-webkit-search-cancel-button
   appearance: none;
 }
 
-
 .locations {
   flex-grow: 1;
   overflow-y: scroll;
@@ -724,7 +723,6 @@ input::-webkit-search-cancel-button
 }
 
 .location {
-  background: linear-gradient(to top,#87CEEB, #4682B4 50%);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
