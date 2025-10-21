@@ -614,6 +614,7 @@ dialog {
     cursor: grab;
     border-radius: 8px;
     font-family: 'SF Pro Display';
+    z-index: 999;
 }
 
 .drop-down-option {
@@ -630,12 +631,25 @@ dialog {
   fill: var(--text);
 }
 
+.drop-down-option:first-of-type {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.drop-down-option:last-of-type {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .drop-down-option:not(:last-of-type)
 {
   border-bottom: 1px solid var(--border-color);
 
 }
 
+.drop-down-option:hover {
+  background-color: var(--background-color);
+}
 dialog > h1 {
   margin: -16px 0px;
   position: relative;
