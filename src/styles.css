@@ -588,11 +588,14 @@ dialog {
   color: var(--text);
   font-family: 'SF Pro Display';
   padding: 16px 32px;
+  gap: 16px;
+}
+
+dialog[open] {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
 
 .edit-locations > svg {
   fill: var(--text);
@@ -696,10 +699,16 @@ dialog > label > input::-webkit-search-cancel-button
 
 .locations {
   flex-grow: 1;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
   display: grid;
   grid-auto-rows: 125px;
   gap: 16px;
+}
+
+.locations::-webkit-scrollbar { 
+    display: none;  
 }
 
 .location {

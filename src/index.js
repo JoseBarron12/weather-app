@@ -153,7 +153,6 @@ const location = document.querySelector(".location");
 
 location.style.background = getSkyGradient(12, true);
 
-
 const dropDownFunctionality = (parent, height) => {
     const isOpen = parent.classList.toggle("isOpen");
     
@@ -189,3 +188,12 @@ btn.addEventListener("mouseenter", () => {
   const rect = btn.getBoundingClientRect();  
   dropDownFunctionality(btn, rect.width + 8 + rect.top);
 });
+
+
+const dialog = document.querySelector("dialog");
+
+const showWinBtn = document.querySelector(".menu>svg");
+
+showWinBtn.addEventListener("click", () => {
+  dialog.show();
+})
