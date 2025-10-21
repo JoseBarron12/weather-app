@@ -251,14 +251,15 @@ for(let i = 0; i < weatherClassData.length; i++)
     }
 }
 
+const circles = document.querySelectorAll(".page-slider>svg");
 
 const leftIcon = document.querySelector(".left");
 
 let currentPage = 0;
 
-
 leftIcon.addEventListener("click", () => {
   
+  circles[currentPage].classList.toggle("current-circle");
   if(currentPage == 0)
   {
     currentPage = weatherClassData.length - 1;
@@ -267,14 +268,18 @@ leftIcon.addEventListener("click", () => {
   {
     currentPage--;
   }
-  console.log(currentPage)
+  
   display.fullPage(weatherClassData[currentPage]);
+  circles[currentPage].classList.toggle("current-circle");
   
 });
 
 const rightIcon = document.querySelector(".right");
 
 rightIcon.addEventListener("click", () => {
+  
+  circles[currentPage].classList.toggle("current-circle");
+  
   if(currentPage == weatherClassData.length - 1)
   {
     currentPage = 0;
@@ -283,5 +288,7 @@ rightIcon.addEventListener("click", () => {
   {
     currentPage++
   }
+  
   display.fullPage(weatherClassData[currentPage]);
+  circles[currentPage].classList.toggle("current-circle");
 })
