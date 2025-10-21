@@ -1,10 +1,5 @@
+import { callAPI } from "./async";
 import "./styles.css";
-import { WeatherData } from "./data";
-import { display } from "./display";
-import { createIconSvg } from "./icon";
-import { callAPI} from "./async";
-import { format, addDays, startOfTomorrow, getHours, constructFrom } from "date-fns";
-import { he } from "date-fns/locale";
 
 let mouseDown = false;
 let startX, scrollLeft;
@@ -219,3 +214,21 @@ locations.forEach((location) => {
     dialog.close();
   })
 });
+
+//callAPI.weather("jamal")
+
+
+const defaultLocations = ["chicago","paris", "new york","tokyo", "london"];
+
+export let locationData = [];
+
+/*
+defaultLocations.forEach((location, index) => {
+    setTimeout(() => {
+      callAPI.allWeatherData(location);
+      localStorage.setItem("locations", JSON.stringify(locationData);
+      console.log(localStorage.getItem("locations"));
+    }, index * 5000);
+}) */
+const weatherDatas = JSON.parse(localStorage.getItem("locations"));
+console.log(weatherDatas);

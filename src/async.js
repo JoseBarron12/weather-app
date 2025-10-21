@@ -1,3 +1,4 @@
+import { locationData } from ".";
 import { WeatherData } from "./data";
 import { display } from "./display";
 import { format, addDays } from "date-fns";
@@ -20,8 +21,7 @@ export const callAPI = (function() {
         try {
             const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";
             const response = await fetch(url);
-            const weatherData = await response.json();
-            return weatherData;
+            const weatherData = await response.json();            return weatherData;
         } catch (error) {
             console.log(error)
             return null;
@@ -72,17 +72,17 @@ export const callAPI = (function() {
             {
                 const weather = new WeatherData(results[0]);
 
-                console.log(weather);
                 weather.averageHighTemp = results[1];
                 weather.airQuality = results[2];
-                console.log(results[2]);
                 
                 weather.moonPhase = results[3];
                 weather.moonRise = results[3];
                 weather.moonSet = results[3];
                 weather.moonDuration = results[3];
 
-                display.fullPage(weather);
+                locationData.push(weather);
+                //display.fullPage(weather);
+                return weather;
             }
             else
             {
