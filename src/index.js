@@ -196,4 +196,17 @@ const showWinBtn = document.querySelector(".menu>svg");
 
 showWinBtn.addEventListener("click", () => {
   dialog.show();
+});
+
+const search = dialog.querySelector("input#search");
+const searchWindow = dialog.querySelector("div.search");
+search.addEventListener("focus", () => {
+  console.log("YEAHSHSS");
+  searchWindow.style.display = "flex";
+});
+
+const searchExitBtn = dialog.querySelector(".search-cancel");
+
+searchExitBtn.addEventListener("click", () => {
+  searchWindow.style.display = "none";
 })
