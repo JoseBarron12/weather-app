@@ -66,19 +66,19 @@ export const callAPI = (function() {
     };
 
     const allWeatherData = (place) => {
-        Promise.all([callAPI.weather(place),callAPI.averageWeather(place),callAPI.airQuality(place), callAPI.moon(place)]).then((results) => {
+        Promise.all([callAPI.weather(place),callAPI.averageWeather(place), callAPI.moon(place)]).then((results) => {
             
             if(!results.includes(null))
             {
                 const weather = new WeatherData(results[0]);
 
                 weather.averageHighTemp = results[1];
-                weather.airQuality = results[2];
+                weather.airQuality = 25;
                 
-                weather.moonPhase = results[3];
-                weather.moonRise = results[3];
-                weather.moonSet = results[3];
-                weather.moonDuration = results[3];
+                weather.moonPhase = results[2];
+                weather.moonRise = results[2];
+                weather.moonSet = results[2];
+                weather.moonDuration = results[2];
 
                 locationData.push(weather);
                 //display.fullPage(weather);
