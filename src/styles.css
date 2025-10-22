@@ -242,6 +242,11 @@ main {
   font-weight: bold;
   user-select: none;
 }
+.forecast-hour-icon {
+  position: relative;
+  padding: 4px 0px;
+}
+
 
 .forecast-hour-temp {
   font-size: large;
@@ -315,10 +320,15 @@ main {
 
 .precip-probability {
   position: absolute;
-  left: -1.5px;
+  left: 0px;
   font-size: 0.75rem;
   top: 14px;
   font-weight: bold;
+}
+
+.precip-probability-hour {
+  top: 20px;
+  left: 0.5px;
 }
 
 

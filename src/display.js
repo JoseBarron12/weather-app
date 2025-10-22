@@ -152,6 +152,7 @@ export const display = (function() {
 
       const forecast = document.querySelector(".hour-data");
       forecast.replaceChildren();
+      
       for(let i = 0; i < arrayOfHours.length; i++)
       {
           const forecastDiv = document.createElement("div");
@@ -173,6 +174,20 @@ export const display = (function() {
           icon.appendChild(iconSVG);
 
           forecastDiv.appendChild(icon);
+
+          console.log(arrayOfHours[i].precipProb);
+          
+          if(arrayOfHours[i].precipProb >= 45)
+          {
+            const textDiv = document.createElement("div");
+            textDiv.classList.add("precip-probability");
+            textDiv.classList.add("precip-probability-hour");
+            textDiv.textContent = arrayOfHours[i].precipProb + "%";
+            console.log(textDiv.textContent);
+
+            iconSVG.classList.add("icon-precipitation");
+            icon.appendChild(textDiv);
+          }
 
           const temp = document.createElement("div");
           temp.classList.add("forecast-hour-temp");
@@ -271,7 +286,7 @@ export const display = (function() {
 
           forecastDiv.appendChild(icon);
 
-          if(arrayOfDays[i].precipProb >= 30)
+          if(arrayOfDays[i].precipProb >= 45)
           {
             const textDiv = document.createElement("div");
             textDiv.classList.add("precip-probability");

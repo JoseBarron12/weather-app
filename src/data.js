@@ -27,7 +27,8 @@ class WeatherData {
                 Math.round(day.tempmin),
                 Math.round(day.temp),
                 Math.round(day.tempmax),
-                day.icon, getTimeRelative(fromUnixTime(day.sunriseEpoch), offset),
+                day.icon, 
+                getTimeRelative(fromUnixTime(day.sunriseEpoch), offset),
                 Math.round(day.precipprob)
             );
 
@@ -47,7 +48,9 @@ class WeatherData {
                 Math.round(currentDayHours[i].tempmin),
                 Math.round(currentDayHours[i].temp),
                 Math.round(currentDayHours[i].tempmax),
-                currentDayHours[i].icon
+                currentDayHours[i].icon,
+                undefined,
+                Math.round(currentDayHours[i].precipprob)
             );
             this.dayForecast.push(hourData);
         }
@@ -64,7 +67,8 @@ class WeatherData {
                 Math.round(nextDayHours[i].temp),
                 Math.round(nextDayHours[i].tempmax),
                 nextDayHours[i].icon,
-                getTimeRelative(fromUnixTime(nextDayHours[i].sunsetEpoch),offset)
+                getTimeRelative(fromUnixTime(nextDayHours[i].sunsetEpoch),offset),
+                Math.round(nextDayHours[i].precipprob)
             );
             this.dayForecast.push(hourData);
         }
