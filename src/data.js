@@ -1,6 +1,10 @@
-import { differenceInHours, differenceInMinutes, fromUnixTime, getHours } from "date-fns";
+import { differenceInHours, differenceInMinutes, fromUnixTime, getHours, addHours } from "date-fns";
 import { id } from "date-fns/locale";
 
+const getTimeRelative = (date, offset) => {
+    const localTime = addHours(date,offset);
+    return addHours(localTime,date.getTimezoneOffset() / 60);
+}
 
 
 class WeatherData {
@@ -13,23 +17,24 @@ class WeatherData {
         this._data = data;
 
         const days = data.days;
-        
+        const offset = data.tzoffset;
 
+        this._offset = offset;
         for(const day of days)
         {
             const dayData = new IndividualWeatherData(
-                fromUnixTime(day.datetimeEpoch),
+                getTimeRelative(fromUnixTime(day.datetimeEpoch), offset),
                 Math.round(day.tempmin),
                 Math.round(day.temp),
                 Math.round(day.tempmax),
-                day.icon, fromUnixTime(day.sunriseEpoch),
+                day.icon, getTimeRelative(fromUnixTime(day.sunriseEpoch), offset),
                 Math.round(day.precipprob)
             );
 
             this.fifteenDayForecast.push(dayData);
         }
 
-        const currentHour = getHours(fromUnixTime(data.currentConditions.datetimeEpoch));
+        const currentHour = getHours(getTimeRelative(fromUnixTime(data.currentConditions.datetimeEpoch), offset));
 
         const currentDay = days[0];
 
@@ -38,7 +43,7 @@ class WeatherData {
         for(let i = currentHour; i < currentDayHours.length; i++)
         {
             const hourData = new IndividualWeatherData(
-                fromUnixTime(currentDayHours[i].datetimeEpoch),
+                getTimeRelative(fromUnixTime(currentDayHours[i].datetimeEpoch),offset),
                 Math.round(currentDayHours[i].tempmin),
                 Math.round(currentDayHours[i].temp),
                 Math.round(currentDayHours[i].tempmax),
@@ -54,12 +59,12 @@ class WeatherData {
         for(let i = 0; i < leftoverHours; i++)
         {
             const hourData = new IndividualWeatherData(
-                fromUnixTime(nextDayHours[i].datetimeEpoch),
+                getTimeRelative(fromUnixTime(nextDayHours[i].datetimeEpoch),offset),
                 Math.round(nextDayHours[i].tempmin),
                 Math.round(nextDayHours[i].temp),
                 Math.round(nextDayHours[i].tempmax),
                 nextDayHours[i].icon,
-                fromUnixTime(nextDayHours[i].sunsetEpoch)
+                getTimeRelative(fromUnixTime(nextDayHours[i].sunsetEpoch),offset)
             );
             this.dayForecast.push(hourData);
         }
@@ -103,15 +108,15 @@ class WeatherData {
     }
 
     getCurrentDateTime() {
-        return fromUnixTime(this._data.currentConditions.datetimeEpoch);
+        return getTimeRelative(fromUnixTime(this._data.currentConditions.datetimeEpoch), this._offset);
     }
 
     getSunrise(){
-        return fromUnixTime(this._data.currentConditions.sunriseEpoch);
+        return getTimeRelative(fromUnixTime(this._data.currentConditions.sunriseEpoch), this._offset);
     }
 
     getSunset() {
-        return fromUnixTime(this._data.currentConditions.sunsetEpoch);
+        return getTimeRelative(fromUnixTime(this._data.currentConditions.sunsetEpoch), this._offset);
     }
 
     getFeelsLikeTemp() {

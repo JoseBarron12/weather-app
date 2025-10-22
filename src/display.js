@@ -642,10 +642,6 @@ export const display = (function() {
 
       parent.appendChild(locationDiv);
 
-      const localTime = addHours(weatherDataObj.getCurrentDateTime(),weatherDataObj._data.tzoffset);
-      const timeRelative = addHours(localTime,weatherDataObj.getCurrentDateTime().getTimezoneOffset() / 60);
-      console.log(`MAYBE FIX?: ${format(timeRelative, "h:mm a")}`);
-
       console.log('CURRENT HOUR');
 
       const localTime1 = addHours(new Date (),weatherDataObj._data.tzoffset);
@@ -656,7 +652,7 @@ export const display = (function() {
       const sunriseHr = weatherDataObj.getSunrise().getHours() + weatherDataObj.getSunrise().getMinutes() / 60;
       const sunsetHr  = weatherDataObj.getSunset().getHours() + weatherDataObj.getSunset().getMinutes() / 60;
 
-      locationDiv.style.background = getSkyGradient(timeRelative, sunriseHr, sunsetHr, true);
+      locationDiv.style.background = getSkyGradient(weatherDataObj.getCurrentDateTime(), sunriseHr, sunsetHr, true);
 
       const header = document.createElement("div");
       header.classList.add("location-header");
