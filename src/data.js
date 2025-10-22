@@ -1,6 +1,8 @@
 import { differenceInHours, differenceInMinutes, fromUnixTime, getHours } from "date-fns";
 import { id } from "date-fns/locale";
 
+
+
 class WeatherData {
     
     dayForecast = [];
@@ -11,6 +13,7 @@ class WeatherData {
         this._data = data;
 
         const days = data.days;
+        
 
         for(const day of days)
         {
