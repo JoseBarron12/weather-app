@@ -719,7 +719,9 @@ export const display = (function() {
         display.fullPage(weatherDataObj);
         window.close();
       })
-    }
+    };
+
+    
 
 
     return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location}

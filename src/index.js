@@ -3,104 +3,38 @@ import { WeatherData } from "./data";
 import { display } from "./display";
 import { addHours, isDate } from "date-fns";
 import "./styles.css";
+import { functionality } from "./functionality";
 
-let mouseDown = false;
-let startX, scrollLeft;
 const slider = document.querySelector('.hour-data');
 
-const startDragging = (e) => {
-  mouseDown = true;
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-}
-
-const stopDragging = (e) => {
-  mouseDown = false;
-}
-
-const move = (e) => {
-  e.preventDefault();
-  if(!mouseDown) { return; }
-  const x = e.pageX - slider.offsetLeft;
-  const scroll = x - startX;
-  slider.scrollLeft = scrollLeft - scroll;
-}
-
-// Add the event listeners
-slider.addEventListener('mousemove', move, false);
-slider.addEventListener('mousedown', startDragging, false);
-slider.addEventListener('mouseup', stopDragging, false);
-slider.addEventListener('mouseleave', stopDragging, false);
-
-//callAPI.allWeatherData("palatine");
-
-
-const dropDownFunctionality = (parent, height) => {
-    const isOpen = parent.classList.toggle("isOpen");
-    
-    const dropDownMenu = parent.nextElementSibling;
-    dropDownMenu.style.top = `${height}px`;
-    dropDownMenu.style.right = `16px`;
-
-    const closeMenu = () => {
-      dropDownMenu.style.display = "none";
-      parent.classList.remove("isOpen");
-    }
-
-    if(isOpen) {
-        dropDownMenu.style.display = "block";
-        dropDownMenu.addEventListener("click", closeMenu);
-        dropDownMenu.addEventListener("mouseleave", closeMenu);
-    }
-    else {
-        dropDownMenu.style.display = "none";
-        dropDownMenu.removeEventListener("click", closeMenu);
-        dropDownMenu.removeEventListener("mouseleave", closeMenu);
-    }
-}
+functionality.slider(slider);
 
 const btn = document.querySelector(".drop-down-btn");
 
-btn.addEventListener("click", () => {
-    const rect = btn.getBoundingClientRect();   
-    dropDownFunctionality(btn, rect.width + 8 + rect.top);
-    });
-
-btn.addEventListener("mouseenter", () => {
-  const rect = btn.getBoundingClientRect();  
-  dropDownFunctionality(btn, rect.width + 8 + rect.top);
-});
-
+functionality.dropDownBtn(btn);
 
 const dialog = document.querySelector("dialog");
 
 const showWinBtn = document.querySelector(".menu>svg");
 
-showWinBtn.addEventListener("click", () => {
-  dialog.show();
-});
+functionality.showWinBtn(showWinBtn, dialog);
+
 
 const search = dialog.querySelector("input#search");
 const searchWindow = dialog.querySelector("div.search");
-search.addEventListener("focus", () => {
-  console.log("YEAHSHSS");
-  searchWindow.style.display = "flex";
-});
+
+functionality.showSearchWin(search, searchWindow);
 
 const searchExitBtn = dialog.querySelector(".search-cancel");
 
-searchExitBtn.addEventListener("click", () => {
-  searchWindow.style.display = "none";
-})
-
-
+functionality.exitSearchWinBtn(searchExitBtn, searchWindow);
 
 //callAPI.weather("jamal")
 
 
 const defaultLocations = ["chicago","paris", "new york","tokyo", "london"];
 
-export let locationData = [];
+let locationData = [];
 
 /*
 defaultLocations.forEach((location, index) => {
@@ -223,3 +157,5 @@ rightIcon.addEventListener("click", () => {
   display.fullPage(weatherClassData[currentPage]);
   circles[currentPage].classList.toggle("current-circle");
 })
+
+export {locationData, currentPage};
