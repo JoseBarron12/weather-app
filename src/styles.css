@@ -169,8 +169,6 @@ main {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transform: translateX(12px);
-
 }
 
 .current-temp {
