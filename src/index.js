@@ -75,47 +75,9 @@ weatherDatas.forEach((data, index) => {
 });
 
 const circleSection = document.querySelector(".page-slider");
+weatherClassData.length
 
-for(let i = 0; i < weatherClassData.length; i++)
-{
-    if(i === 0) {
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("class", "circle current-circle");
-        svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("width", "100");
-        svg.setAttribute("height", "100");
-
-
-        const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-        title.textContent = "circle";
-        svg.appendChild(title);
-
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z");
-        svg.appendChild(path);
-
-        circleSection.appendChild(svg);
-    }
-    else
-    {
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("class", "circle");
-        svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("width", "100");
-        svg.setAttribute("height", "100");
-
-
-        const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-        title.textContent = "circle";
-        svg.appendChild(title);
-
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z");
-        svg.appendChild(path);
-
-        circleSection.appendChild(svg);
-    }
-}
+display.circleSection(circleSection, weatherClassData.length)
 
 const circles = document.querySelectorAll(".page-slider>svg");
 

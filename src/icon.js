@@ -236,6 +236,20 @@ export const createIconSvg = (name) => {
             pathD: "M2 12A10 10 0 0 0 15 21.54A10 10 0 0 1 15 2.46A10 10 0 0 0 2 12Z",
             titleText: "moon-waning-crescent",
             });
+        case "circle": 
+            return createSVG({
+            className: "circle", 
+            viewBox: "0 0 24 24",
+            pathD: "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z",
+            titleText: "circle"
+            });
+        case "nav":
+            return createSVG({
+            className: "circle current-circle nav-icon", 
+            viewBox: "0 0 24 24",
+            pathD: "M21 3L3 10.53V11.5L9.84 14.16L12.5 21H13.46L21 3Z",
+            titleText: "navigation-variant"
+            });
         default:
             return null;
     }

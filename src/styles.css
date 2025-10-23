@@ -544,6 +544,10 @@ footer > div {
 .current-circle {
   fill: var(--text);
 }
+
+.nav-icon {
+  scale: 1.25;
+}
 .menu {
   position: absolute;
   top: 8px;

@@ -721,8 +721,18 @@ export const display = (function() {
       })
     };
 
-    
+    const circleSection = (parent, length) => {
+      for(let i = 0; i < length; i++) {
+        if(i === 0) {
+          parent.appendChild(createIconSvg("nav"));
+        }
+        else
+        {
+          parent.appendChild(createIconSvg("circle"));
+        }
+      }
+    }
 
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection}
 })();
