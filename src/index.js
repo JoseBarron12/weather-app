@@ -28,7 +28,7 @@ functionality.showSearchWin(search, searchWindow);
 
 const searchExitBtn = dialog.querySelector(".search-cancel");
 
-functionality.exitSearchWinBtn(searchExitBtn, searchWindow);
+functionality.exitSearchWinBtn(searchExitBtn, searchWindow, search);
 
 //callAPI.weather("jamal")
 

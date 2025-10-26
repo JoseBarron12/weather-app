@@ -76,13 +76,16 @@ export const functionality = (function() {
 
     const showSearchWin = (input, window) => {
         input.addEventListener("focus", () => {
-          window.style.display = "flex";
+            input.disabled = true;
+            window.style.display = "flex";
         });
     };
 
-    const exitSearchWinBtn = (btn, window) => {
+    const exitSearchWinBtn = (btn, window, input) => {
         btn.addEventListener("click", () => {
-          window.style.display = "none";
+            input.disabled = false;
+            input.enabled = true;
+            window.style.display = "none";
         })
     };
 
