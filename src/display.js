@@ -4,6 +4,7 @@ import { createIconSvg } from "./icon";
 import { compareAsc, format, getHours, addHours} from "date-fns";
 import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
+import { functionality } from "./functionality";
 
 
 const toUpperCaseFirstChar = (string) => {
@@ -718,62 +719,7 @@ export const display = (function() {
       low.textContent = `L:${weatherDataObj.getMinTemp()}\u00B0`;
       tempRange.appendChild(low);
 
-      locationDiv.addEventListener("click", () => {
-        display.fullPage(weatherDataObj);
-        currentWeatherPage.currentPage = index;
-        
-        const circleSection = document.querySelector(".page-slider");
-        display.circleSection(circleSection, weatherClassData.length, currentWeatherPage.currentPage);
-
-        const circles = document.querySelectorAll(".page-slider>svg");
-
-        const left = document.querySelector(".left");
-
-        const leftIcon = left.cloneNode(true);
-        left.parentNode.replaceChild(leftIcon, left);
-
-        leftIcon.addEventListener("click", () => {
-          
-          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
-          if(currentWeatherPage.currentPage == 0)
-          {
-            currentWeatherPage.currentPage = weatherClassData.length - 1;
-          }
-          else
-          {
-            currentWeatherPage.currentPage = currentWeatherPage.currentPage  - 1;
-          }
-          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
-          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
-          
-        });
-
-        const right = document.querySelector(".right");
-        const rightIcon = right.cloneNode(true);
-        right.parentNode.replaceChild(rightIcon, right);
-
-        rightIcon.addEventListener("click", () => {
-          
-          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
-          
-          if(currentWeatherPage.currentPage == weatherClassData.length - 1)
-          {
-            currentWeatherPage.currentPage = 0;
-          }
-          else
-          {
-            currentWeatherPage.currentPage = currentWeatherPage.currentPage  + 1;
-          }
-          
-          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
-          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
-        });
-        
-
-
-
-        window.close();
-      })
+      functionality.locationDivBtn(locationDiv, weatherDataObj, window, index);
     };
 
     const circleSection = (parent, length, currentPage) => {

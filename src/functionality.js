@@ -1,3 +1,7 @@
+import { display } from "./display";
+import { currentWeatherPage } from "./default";
+import { weatherClassData } from ".";
+
 export const functionality = (function() {
     const slider = (slider) => {
         let mouseDown = false;
@@ -82,5 +86,64 @@ export const functionality = (function() {
         })
     };
 
-    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn};
+    const locationDivBtn = (locationDiv, weatherDataObj, window, index) => {
+        locationDiv.addEventListener("click", () => {
+        display.fullPage(weatherDataObj);
+        currentWeatherPage.currentPage = index;
+        
+        const circleSection = document.querySelector(".page-slider");
+        display.circleSection(circleSection, weatherClassData.length, currentWeatherPage.currentPage);
+
+        const circles = document.querySelectorAll(".page-slider>svg");
+        const left = document.querySelector(".left");
+        const right = document.querySelector(".right");
+
+        functionality.switchPagesBtns(circles, left, right);
+        
+        window.close();
+      });
+    };
+
+    const switchPagesBtns = (circles, left, right) => {
+        const leftIcon = left.cloneNode(true);
+        left.parentNode.replaceChild(leftIcon, left);
+
+        leftIcon.addEventListener("click", () => {
+          
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          if(currentWeatherPage.currentPage == 0)
+          {
+            currentWeatherPage.currentPage = weatherClassData.length - 1;
+          }
+          else
+          {
+            currentWeatherPage.currentPage = currentWeatherPage.currentPage  - 1;
+          }
+          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          
+        });
+
+        const rightIcon = right.cloneNode(true);
+        right.parentNode.replaceChild(rightIcon, right);
+
+        rightIcon.addEventListener("click", () => {
+          
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          
+          if(currentWeatherPage.currentPage == weatherClassData.length - 1)
+          {
+            currentWeatherPage.currentPage = 0;
+          }
+          else
+          {
+            currentWeatherPage.currentPage = currentWeatherPage.currentPage  + 1;
+          }
+          
+          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+        });
+    }
+
+    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns};
 })();
