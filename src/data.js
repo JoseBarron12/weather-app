@@ -366,5 +366,19 @@ class WeatherLocation {
 }
 
 
+class WeatherPages {
+    constructor() {
+        this._currentPage = 0;
+    }
 
-export {WeatherData, IndividualWeatherData, WeatherLocation}
+    get currentPage() {
+        return this._currentPage;
+    }
+    set currentPage(newPage) {
+       this._currentPage = newPage;
+    }
+
+}
+
+
+export {WeatherData, IndividualWeatherData, WeatherLocation, WeatherPages}

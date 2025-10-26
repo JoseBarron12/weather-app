@@ -2,6 +2,7 @@ import { he, hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
 import { compareAsc, format, getHours, addHours} from "date-fns";
+import { currentWeatherPage } from "./default";
 
 const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -717,6 +718,7 @@ export const display = (function() {
 
       locationDiv.addEventListener("click", () => {
         display.fullPage(weatherDataObj);
+        console.log(currentWeatherPage.currentPage);
         window.close();
       })
     };
