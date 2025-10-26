@@ -3,6 +3,8 @@ import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
 import { compareAsc, format, getHours, addHours} from "date-fns";
 import { currentWeatherPage } from "./default";
+import { weatherClassData } from ".";
+
 
 const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -652,7 +654,7 @@ export const display = (function() {
       display.moon(weather);
     };
 
-    const location = (weatherDataObj, parent, window) => {
+    const location = (weatherDataObj, parent, window, index) => {
       const locationDiv = document.createElement("div");
       locationDiv.classList.add("location");
 
@@ -718,19 +720,85 @@ export const display = (function() {
 
       locationDiv.addEventListener("click", () => {
         display.fullPage(weatherDataObj);
-        console.log(currentWeatherPage.currentPage);
+        currentWeatherPage.currentPage = index;
+        
+        const circleSection = document.querySelector(".page-slider");
+        display.circleSection(circleSection, weatherClassData.length, currentWeatherPage.currentPage);
+
+        const circles = document.querySelectorAll(".page-slider>svg");
+
+        const left = document.querySelector(".left");
+
+        const leftIcon = left.cloneNode(true);
+        left.parentNode.replaceChild(leftIcon, left);
+
+        leftIcon.addEventListener("click", () => {
+          
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          if(currentWeatherPage.currentPage == 0)
+          {
+            currentWeatherPage.currentPage = weatherClassData.length - 1;
+          }
+          else
+          {
+            currentWeatherPage.currentPage = currentWeatherPage.currentPage  - 1;
+          }
+          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          
+        });
+
+        const right = document.querySelector(".right");
+        const rightIcon = right.cloneNode(true);
+        right.parentNode.replaceChild(rightIcon, right);
+
+        rightIcon.addEventListener("click", () => {
+          
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+          
+          if(currentWeatherPage.currentPage == weatherClassData.length - 1)
+          {
+            currentWeatherPage.currentPage = 0;
+          }
+          else
+          {
+            currentWeatherPage.currentPage = currentWeatherPage.currentPage  + 1;
+          }
+          
+          display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+          circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+        });
+        
+
+
+
         window.close();
       })
     };
 
-    const circleSection = (parent, length) => {
+    const circleSection = (parent, length, currentPage) => {
+      
+      parent.replaceChildren();
+
       for(let i = 0; i < length; i++) {
         if(i === 0) {
-          parent.appendChild(createIconSvg("nav"));
+          const svg = createIconSvg("nav");
+          if(i === currentPage)
+          {
+            svg.classList.add("current-circle");
+          }
+
+          parent.appendChild(svg);
         }
         else
         {
-          parent.appendChild(createIconSvg("circle"));
+          const svg = createIconSvg("circle");
+          if(i === currentPage)
+          {
+            svg.classList.add("current-circle");
+          }
+
+          parent.appendChild(svg);
         }
       }
     }

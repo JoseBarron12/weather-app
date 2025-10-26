@@ -245,7 +245,7 @@ export const createIconSvg = (name) => {
             });
         case "nav":
             return createSVG({
-            className: "circle current-circle nav-icon", 
+            className: "circle nav-icon", 
             viewBox: "0 0 24 24",
             pathD: "M21 3L3 10.53V11.5L9.84 14.16L12.5 21H13.46L21 3Z",
             titleText: "navigation-variant"

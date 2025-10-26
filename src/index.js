@@ -66,7 +66,7 @@ weatherDatas.forEach((data, index) => {
   //console.log(addHours(weatherData.getCurrentDateTime(),data._data.tzoffset));
 
   weatherClassData.push(weatherData);
-  display.location(weatherData,locations,dialog);
+  display.location(weatherData,locations,dialog, index);
 
   if(index == 0)
   {
@@ -76,15 +76,12 @@ weatherDatas.forEach((data, index) => {
 });
 
 const circleSection = document.querySelector(".page-slider");
-weatherClassData.length
 
-display.circleSection(circleSection, weatherClassData.length)
+display.circleSection(circleSection, weatherClassData.length, currentWeatherPage.currentPage)
 
 const circles = document.querySelectorAll(".page-slider>svg");
 
 const leftIcon = document.querySelector(".left");
-
-
 
 leftIcon.addEventListener("click", () => {
   
@@ -119,6 +116,6 @@ rightIcon.addEventListener("click", () => {
   
   display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
   circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
-})
+});
 
-export {locationData};
+export {locationData, weatherClassData};
