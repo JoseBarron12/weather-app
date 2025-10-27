@@ -179,7 +179,6 @@ export const display = (function() {
 
           forecastDiv.appendChild(icon);
 
-          console.log(arrayOfHours[i].precipProb);
           
           if(arrayOfHours[i].precipProb >= 45)
           {
@@ -187,7 +186,6 @@ export const display = (function() {
             textDiv.classList.add("precip-probability");
             textDiv.classList.add("precip-probability-hour");
             textDiv.textContent = arrayOfHours[i].precipProb + "%";
-            console.log(textDiv.textContent);
 
             iconSVG.classList.add("icon-precipitation");
             icon.appendChild(textDiv);
@@ -664,13 +662,6 @@ export const display = (function() {
       locationDiv.classList.add("location");
 
       containerDiv.appendChild(locationDiv);
-
-      console.log('CURRENT HOUR');
-
-      const localTime1 = addHours(new Date (),weatherDataObj._data.tzoffset);
-      const timeRelative1 = addHours(localTime1,new Date().getTimezoneOffset() / 60);
-      console.log(`CURRENT?: ${format(timeRelative1, "h:mm a")}`);
-      
 
       const sunriseHr = weatherDataObj.getSunrise().getHours() + weatherDataObj.getSunrise().getMinutes() / 60;
       const sunsetHr  = weatherDataObj.getSunset().getHours() + weatherDataObj.getSunset().getMinutes() / 60;
