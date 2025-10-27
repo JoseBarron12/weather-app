@@ -37,6 +37,10 @@ functionality.exitSearchWinBtn(searchExitBtn, searchWindow, search);
 
 //callAPI.weather("jamal")
 
+const searchLocation = dialog.querySelector("input#search-input");
+
+functionality.searchForLocation(searchLocation);
+
 
 const defaultLocations = ["chicago","paris", "new york","tokyo", "london"];
 

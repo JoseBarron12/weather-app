@@ -1,6 +1,7 @@
 import { display } from "./display";
 import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
+import { callAPI } from "./async";
 
 export const functionality = (function() {
     const slider = (slider) => {
@@ -178,8 +179,23 @@ export const functionality = (function() {
         deleteBtns.forEach((deleteBtn) => {
           deleteBtn.style.display = "none";
         });
-      })
+      });
     }
 
-    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs};
+    const searchForLocation = (input) => {
+      input.addEventListener("input", () => {
+        let id = setTimeout(() => {
+          callAPI.searchResult(input.value).then((result) => {
+            console.log(result);
+          })
+        }, "1000");
+
+        input.addEventListener("input", () => {
+          clearTimeout(id);
+        });
+        
+      });
+    }
+
+    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs, searchForLocation};
 })();

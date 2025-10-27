@@ -17,6 +17,17 @@ const getFormattedTenDate = () => {
 
 
 export const callAPI = (function() {
+    const searchResult = async (place) => {
+        try {
+            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV" + "&include=resolvedAddress";
+            const response = await fetch(url);
+            const weatherData = await response.json();            return weatherData;
+        } catch (error) {
+            console.log(error)
+            return null;
+        }
+    };
+    
     const weather = async (place) => {
         try {
             const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";
@@ -93,5 +104,5 @@ export const callAPI = (function() {
         });
     }
 
-    return {weather, averageWeather, airQuality, moon, allWeatherData, };
+    return {weather, averageWeather, airQuality, moon, allWeatherData,searchResult };
 })();
