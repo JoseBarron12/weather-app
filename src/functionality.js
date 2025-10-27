@@ -146,7 +146,40 @@ export const functionality = (function() {
           display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
           circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
         });
+    };
+
+    const showEditPgs = (btn) => {
+      btn.addEventListener("click", () => {
+        const dropDown = document.querySelector(".edit-locations > svg");
+        dropDown.style.display = "none"
+        
+        const exitBtn = document.querySelector(".exit-edit-btn");
+        exitBtn.style.display = "block";
+        functionality.exitEditPgs(exitBtn);
+        
+        const deleteBtns = document.querySelectorAll(".locations>div>svg");
+        deleteBtns.forEach((deleteBtn) => {
+          deleteBtn.style.display = "block";
+          functionality.exitEditPgs(deleteBtn);
+        });
+      })
+    };
+
+    const exitEditPgs = (btn) => {
+      btn.addEventListener("click", () => {
+        console.log(btn);
+        const dropDown = document.querySelector(".edit-locations > svg");
+        dropDown.style.display = "block"
+        
+        const exitBtn = document.querySelector(".exit-edit-btn");
+        exitBtn.style.display = "none";
+        
+        const deleteBtns = document.querySelectorAll(".locations>div>svg");
+        deleteBtns.forEach((deleteBtn) => {
+          deleteBtn.style.display = "none";
+        });
+      })
     }
 
-    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns};
+    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs};
 })();

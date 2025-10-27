@@ -1,7 +1,7 @@
 import { he, hu, te } from "date-fns/locale";
 import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
-import { compareAsc, format, getHours, addHours} from "date-fns";
+import { compareAsc, format, getHours, addHours, constructFrom} from "date-fns";
 import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { functionality } from "./functionality";
@@ -656,10 +656,14 @@ export const display = (function() {
     };
 
     const location = (weatherDataObj, parent, window, index) => {
+      
+      const containerDiv = document.createElement("div");
+      parent.appendChild(containerDiv);
+
       const locationDiv = document.createElement("div");
       locationDiv.classList.add("location");
 
-      parent.appendChild(locationDiv);
+      containerDiv.appendChild(locationDiv);
 
       console.log('CURRENT HOUR');
 
@@ -720,6 +724,8 @@ export const display = (function() {
       tempRange.appendChild(low);
 
       functionality.locationDivBtn(locationDiv, weatherDataObj, window, index);
+
+      containerDiv.appendChild(createIconSvg("minus"));
     };
 
     const circleSection = (parent, length, currentPage) => {

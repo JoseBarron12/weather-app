@@ -14,6 +14,11 @@ const btn = document.querySelector(".drop-down-btn");
 
 functionality.dropDownBtn(btn);
 
+const editListBtn = document.querySelector(".drop-down-option:first-of-type");
+
+functionality.showEditPgs(editListBtn);
+
+
 const dialog = document.querySelector("dialog");
 
 const showWinBtn = document.querySelector(".menu>svg");

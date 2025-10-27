@@ -617,6 +617,19 @@ dialog[open] {
   cursor: grab;
 }
 
+.exit-edit-btn {
+  position: absolute;
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: bolder;
+  letter-spacing: 0.5px;
+  cursor: grab;
+  top: 32px;
+  right: 32px;
+  display: none;
+  z-index: 999;
+}
+
 .drop-down-menu {
     background-color: #262626;
     display: none;
@@ -730,6 +743,11 @@ input::-webkit-search-cancel-button
   gap: 16px;
 }
 
+.locations > div {
+  display: flex;
+  gap: 16px;
+}
+
 .locations::-webkit-scrollbar { 
   display: none;  
 }
@@ -740,6 +758,7 @@ input::-webkit-search-cancel-button
   flex-direction: column;
   justify-content: space-between;
   padding: 8px 16px;
+  flex-grow: 1;
 }
 
 .location-header {
@@ -751,6 +770,15 @@ input::-webkit-search-cancel-button
   display: flex;
   flex-direction: column;
   width: calc(100%);
+}
+
+.minus {
+  fill: red;
+  width: 35px;
+  height: 35px;
+  align-self: center;
+  display: none;
+  cursor: grab;
 }
 
 .name-location {
