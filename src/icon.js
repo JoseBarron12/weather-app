@@ -252,10 +252,10 @@ export const createIconSvg = (name) => {
             });
         case "minus": 
             return createSVG({
-            className: "minus", 
+            className: "minus", // optional
             viewBox: "0 0 24 24",
-            pathD: "M17,13H7V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z",
-            titleText: "minus-circle"
+            pathD: "M20 14H4V10H20",
+            titleText: "minus-thick"
             });
         case "search":
             return createSVG({

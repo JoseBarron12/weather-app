@@ -772,13 +772,23 @@ input::-webkit-search-cancel-button
   width: calc(100%);
 }
 
-.minus {
-  fill: red;
-  width: 35px;
-  height: 35px;
-  align-self: center;
+.minus-box {
+  background-color: red;
   display: none;
+  height: 28px;
+  width: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.minus {
+  fill: var(--text);
+  width: 24px;
+  height: 24px;
   cursor: grab;
+  transform: scaleY(0.5);
 }
 
 .name-location {

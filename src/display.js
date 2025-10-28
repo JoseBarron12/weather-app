@@ -675,7 +675,6 @@ export const display = (function() {
     };
 
     const location = (weatherDataObj, parent, window, index) => {
-      
       const containerDiv = document.createElement("div");
       parent.appendChild(containerDiv);
 
@@ -739,7 +738,12 @@ export const display = (function() {
 
       functionality.exitEditPgs(locationDiv);
 
-      containerDiv.appendChild(createIconSvg("minus"));
+      const iconDiv = document.createElement("div");
+      iconDiv.classList.add("minus-box");
+      iconDiv.appendChild(createIconSvg("minus"));
+
+      containerDiv.appendChild(iconDiv);
+
     };
 
     const circleSection = (parent, length, currentPage) => {

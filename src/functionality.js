@@ -165,9 +165,9 @@ export const functionality = (function() {
         exitBtn.style.display = "block";
         functionality.exitEditPgs(exitBtn);
         
-        const deleteBtns = document.querySelectorAll(".locations>div>svg");
+        const deleteBtns = document.querySelectorAll(".minus-box");
         deleteBtns.forEach((deleteBtn) => {
-          deleteBtn.style.display = "block";
+          deleteBtn.style.display = "flex";
           functionality.exitEditPgs(deleteBtn);
         });
 
@@ -184,7 +184,7 @@ export const functionality = (function() {
         const exitBtn = document.querySelector(".exit-edit-btn");
         exitBtn.style.display = "none";
         
-        const deleteBtns = document.querySelectorAll(".locations>div>svg");
+        const deleteBtns = document.querySelectorAll(".minus-box");
         deleteBtns.forEach((deleteBtn) => {
           deleteBtn.style.display = "none";
         });
