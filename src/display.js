@@ -11,6 +11,17 @@ const toUpperCaseFirstChar = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+const upperCaseSentence = (sentence) => {
+    
+  let array = sentence.split(" ");
+
+  for(let i = 0; i < array.length; i++)
+    {
+      array[i] = toUpperCaseFirstChar(toUpperCaseFirstChar(array[i]));
+    }
+    return array.join(" ");
+}
+
 const getWindDirection = (dir) => {
   if(dir > 337.5 || dir <= 22.5)
   {
@@ -117,7 +128,7 @@ function blendGradients([c1Top, c1Bottom], [c2Top, c2Bottom], t) {
 export const display = (function() {
     const header = (weatherDataObj) => {
         const locationName = document.querySelector(".location-name>p");
-        locationName.textContent = toUpperCaseFirstChar(weatherDataObj.getLocationName());
+        locationName.textContent = upperCaseSentence(weatherDataObj.getLocationName());
 
         const currentTemp = document.querySelector(".current-temp");
         currentTemp.textContent = weatherDataObj.getCurrentTemp() + "\u00B0";
@@ -678,7 +689,7 @@ export const display = (function() {
 
       const name = document.createElement("div");
       name.classList.add("name-location");
-      name.textContent = toUpperCaseFirstChar(weatherDataObj.getLocationName());
+      name.textContent = upperCaseSentence(weatherDataObj.getLocationName());
       info.appendChild(name);
 
       const time = document.createElement("div");
