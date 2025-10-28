@@ -87,6 +87,12 @@ export const functionality = (function() {
             input.disabled = false;
             input.enabled = true;
             window.style.display = "none";
+            
+            const searchResults = document.querySelector(".search-results");
+            searchResults.replaceChildren();
+
+            const searchLocation = document.querySelector("input#search-input");
+            searchLocation.value = "";
         })
     };
 
@@ -183,7 +189,7 @@ export const functionality = (function() {
     }
 
     const searchForLocation = (input) => {
-      const searchResults = document.querySelector(".search-results")
+      const searchResults = document.querySelector(".search-results");
       input.addEventListener("input", () => {
         let id = setTimeout(() => {
           callAPI.searchResult(input.value).then((result) => {
