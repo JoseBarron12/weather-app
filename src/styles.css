@@ -896,4 +896,18 @@ div.search {
   color: rgba(255, 255, 255, 0.459);
 }
 
+.add-location-btn-cancel, .add-location-btn-confirm {
+  position: absolute;
+  color: var(--text);
+  font-size: 1.125rem;
+  cursor: grab;
+}
 
+.add-location-btn-cancel {
+  left: 16px;
+}
+
+.add-location-btn-confirm {
+  right: 16px;
+  font-weight: bold;
+}

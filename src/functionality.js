@@ -2,6 +2,7 @@ import { display } from "./display";
 import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { callAPI } from "./async";
+import { add } from "date-fns";
 
 export const functionality = (function() {
     const slider = (slider) => {
@@ -200,6 +201,7 @@ export const functionality = (function() {
       const searchResults = document.querySelector(".search-results");
       input.addEventListener("input", () => {
         let id = setTimeout(() => {
+          
           callAPI.searchResult(input.value).then((result) => {
             if(result != null)
             {
@@ -223,8 +225,12 @@ export const functionality = (function() {
     const searchResultBtn = (btn) => {
       btn.addEventListener("click", () => {
         callAPI.allWeatherData(btn.textContent).then(result => {
+          /* just to test for now
           console.log(result.getCurrentDateTime());
           display.fullPage(result);
+          */
+
+          display.fullPage(weatherClassData[0]);
           const dialog = document.querySelector("dialog");
           dialog.close();
 
@@ -236,6 +242,47 @@ export const functionality = (function() {
 
           const right = document.querySelector(".right");
           right.style.display = "none";
+
+          const body = document.querySelector("main");
+
+          const cancelBtn = document.createElement("div");
+          cancelBtn.classList.add("add-location-btn-cancel");
+          cancelBtn.textContent = "Cancel";
+          body.appendChild(cancelBtn);
+
+          const addBtn = document.createElement("div");
+          addBtn.classList.add("add-location-btn-confirm");
+          addBtn.textContent = "Add";
+          body.appendChild(addBtn);
+
+          cancelBtn.addEventListener("click", () => {
+            footer.style.display = "flex";
+            left.style.display = "block";
+            right.style.display = "block";
+
+            cancelBtn.remove();
+            addBtn.remove();
+
+            dialog.show();
+          });
+
+          const search = dialog.querySelector("input#search");
+          const searchWindow = dialog.querySelector("div.search");
+
+          functionality.exitSearchWinBtn(addBtn, searchWindow, search)
+
+          addBtn.addEventListener("click", () => {
+            footer.style.display = "flex";
+            left.style.display = "block";
+            right.style.display = "block";
+
+            cancelBtn.remove();
+            addBtn.remove();
+
+            dialog.show();
+          });
+
+
         });
 
       })
