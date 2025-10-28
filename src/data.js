@@ -205,7 +205,15 @@ class WeatherData {
     }
 
     set moonSet(data) {
-        this._moonSet = fromUnixTime(data.days[0].moonsetEpoch);
+        if(data.days[0].moonsetEpoch == undefined)
+        {
+            this._moonSet = fromUnixTime(data.days[1].moonsetEpoch);
+        }
+        else
+        {
+            this._moonSet = fromUnixTime(data.days[0].moonsetEpoch);
+        }
+        
     }
 
     get moonSet() {
@@ -382,4 +390,4 @@ class WeatherPages {
 }
 
 
-export {WeatherData, IndividualWeatherData, WeatherLocation, WeatherPages}
+export {WeatherData, IndividualWeatherData, WeatherLocation, WeatherPages, getTimeRelative}

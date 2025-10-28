@@ -630,6 +630,7 @@ export const display = (function() {
       moonRise.textContent = format(weatherDataObj.moonRise,"h:mm a");
 
       const moonSet = document.querySelector(".moon-set>.text");
+      
       moonSet.textContent = format(weatherDataObj.moonSet,"h:mm a");
 
       const moonDuration = document.querySelector(".moon-duration>.text");
@@ -774,13 +775,13 @@ export const display = (function() {
       }
     }
 
-    const searchResult = (parent, weatherDataObj) => {
+    const searchResult = (parent, weatherDataObj, time) => {
       parent.replaceChildren();
       const searchDiv = document.createElement("div");
       searchDiv.textContent = toUpperCaseFirstChar(weatherDataObj.resolvedAddress);
       parent.appendChild(searchDiv);
 
-      functionality.searchResultBtn(searchDiv);
+      functionality.searchResultBtn(searchDiv, time);
     }
 
     const invalidSearchResult = (parent, query) => {

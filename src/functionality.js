@@ -3,6 +3,7 @@ import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { callAPI } from "./async";
 import { add } from "date-fns";
+import { getTimeRelative } from "./data";
 
 export const functionality = (function() {
     const slider = (slider) => {
@@ -214,7 +215,8 @@ export const functionality = (function() {
           callAPI.searchResult(input.value).then((result) => {
             if(result != null)
             {
-              display.searchResult(searchResults,result);
+              const time = getTimeRelative(new Date(), result.tzoffset);
+              display.searchResult(searchResults,result, time);
             }
             else
             {
@@ -231,9 +233,9 @@ export const functionality = (function() {
       });
     };
 
-    const searchResultBtn = (btn) => {
+    const searchResultBtn = (btn, time) => {
       btn.addEventListener("click", () => {
-        callAPI.allWeatherData(btn.textContent).then(result => {
+        callAPI.allWeatherData(btn.textContent,time).then(result => {
           
           display.fullPage(result);
 
