@@ -210,7 +210,28 @@ export const functionality = (function() {
         });
         
       });
+    };
+
+    const searchResultBtn = (btn) => {
+      btn.addEventListener("click", () => {
+        callAPI.allWeatherData(btn.textContent).then(result => {
+          console.log(result.getCurrentDateTime());
+          display.fullPage(result);
+          const dialog = document.querySelector("dialog");
+          dialog.close();
+
+          const footer = document.querySelector("footer");
+          footer.style.display = "none";
+
+          const left = document.querySelector(".left");
+          left.style.display = "none";
+
+          const right = document.querySelector(".right");
+          right.style.display = "none";
+        });
+
+      })
     }
 
-    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs, searchForLocation};
+    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs, searchForLocation, searchResultBtn};
 })();

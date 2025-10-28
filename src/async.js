@@ -76,32 +76,31 @@ export const callAPI = (function() {
         }
     };
 
-    const allWeatherData = (place) => {
-        Promise.all([callAPI.weather(place),callAPI.averageWeather(place), callAPI.moon(place)]).then((results) => {
-            
-            if(!results.includes(null))
-            {
-                const weather = new WeatherData(results[0]);
+    const allWeatherData = async (place) => {
+        
+        const results = await Promise.all([callAPI.weather(place),callAPI.averageWeather(place), callAPI.moon(place)]);
 
-                weather.averageHighTemp = results[1];
-                weather.airQuality = 25;
+        if(!results.includes(null))
+        {
+            const weather = new WeatherData(results[0]);
+
+            weather.averageHighTemp = results[1];
+             weather.setAirQuality(25);
                 
-                weather.moonPhase = results[2];
-                weather.moonRise = results[2];
-                weather.moonSet = results[2];
-                weather.moonDuration = results[2];
+            weather.moonPhase = results[2];
+            weather.moonRise = results[2];
+            weather.moonSet = results[2];
+            weather.moonDuration = results[2];
 
-                locationData.push(weather);
-                //display.fullPage(weather);
-                return weather;
-            }
-            else
-            {
-                console.log("ERROR IN QUERY GGS");
-            }
-            
-
-        });
+            //locationData.push(weather);
+            //display.fullPage(weather);
+            return weather;
+        }
+        else
+        {
+            console.log("ERROR IN QUERY GGS");
+            return null;
+        }     
     }
 
     return {weather, averageWeather, airQuality, moon, allWeatherData,searchResult };

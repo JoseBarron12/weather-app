@@ -856,6 +856,9 @@ div.search {
 
 .search-results > div {
   font-size: 1.25rem;
+  cursor: grab;
+  height: max-content;
+  width: 100%;
 }
 
 .invalid-search-icon {
@@ -869,7 +872,6 @@ div.search {
   flex-direction: column;
   align-items: center;
   color: var(--text);
-  width: 100%;
   margin-top: 50px;
 }
 

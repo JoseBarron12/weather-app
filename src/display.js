@@ -751,6 +751,8 @@ export const display = (function() {
       const searchDiv = document.createElement("div");
       searchDiv.textContent = toUpperCaseFirstChar(weatherDataObj.resolvedAddress);
       parent.appendChild(searchDiv);
+
+      functionality.searchResultBtn(searchDiv);
     }
 
     const invalidSearchResult = (parent, query) => {
