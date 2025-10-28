@@ -740,6 +740,7 @@ export const display = (function() {
 
       const iconDiv = document.createElement("div");
       iconDiv.classList.add("minus-box");
+      iconDiv.setAttribute("id", `${index}`);
       iconDiv.appendChild(createIconSvg("minus"));
 
       containerDiv.appendChild(iconDiv);
@@ -801,6 +802,19 @@ export const display = (function() {
 
     }
 
+    const allCurrentLocations = () => {
+      const dialog = document.querySelector("dialog");
+      
+      const locations = document.querySelector(".locations");
+      locations.replaceChildren();
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection, searchResult, invalidSearchResult}
+      weatherClassData.forEach((data, index) => {
+        
+        display.location(data,locations,dialog,index);
+      });
+
+    }
+
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection, searchResult, invalidSearchResult, allCurrentLocations}
 })();

@@ -170,6 +170,7 @@ export const functionality = (function() {
         deleteBtns.forEach((deleteBtn) => {
           deleteBtn.style.display = "flex";
           functionality.exitEditPgs(deleteBtn);
+          functionality.deleteLocationBtn(deleteBtn, deleteBtn.getAttribute("id"));
         });
 
         const input = document.querySelector("input#search");
@@ -196,6 +197,14 @@ export const functionality = (function() {
 
       });
     }
+
+    const deleteLocationBtn = (btn,index) => {
+      btn.addEventListener("click", () => {
+        weatherClassData.splice(index, 1);
+        display.allCurrentLocations();
+      })
+    }
+
 
     const searchForLocation = (input) => {
       const searchResults = document.querySelector(".search-results");
@@ -280,9 +289,8 @@ export const functionality = (function() {
 
             weatherClassData.push(result);
 
-            const locations = document.querySelector(".locations");
-            display.location(result, locations, dialog, weatherClassData.length - 1);
-            
+            display.allCurrentLocations();
+
           });
 
 
@@ -291,5 +299,5 @@ export const functionality = (function() {
       })
     }
 
-    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs, searchForLocation, searchResultBtn};
+    return {slider, dropDown, dropDownBtn, showWinBtn, showSearchWin, exitSearchWinBtn, locationDivBtn, switchPagesBtns, showEditPgs, exitEditPgs, searchForLocation, searchResultBtn, deleteLocationBtn};
 })();
