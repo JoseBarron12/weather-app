@@ -112,6 +112,7 @@ export const functionality = (function() {
         
         window.close();
       });
+
     };
 
     const switchPagesBtns = (circles, left, right) => {

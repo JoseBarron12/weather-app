@@ -716,6 +716,8 @@ export const display = (function() {
 
       functionality.locationDivBtn(locationDiv, weatherDataObj, window, index);
 
+      functionality.exitEditPgs(locationDiv);
+
       containerDiv.appendChild(createIconSvg("minus"));
     };
 
