@@ -746,6 +746,32 @@ export const display = (function() {
       }
     }
 
+    const searchResult = (parent, weatherDataObj) => {
+      parent.replaceChildren();
+      const searchDiv = document.createElement("div");
+      searchDiv.textContent = toUpperCaseFirstChar(weatherDataObj.resolvedAddress);
+      parent.appendChild(searchDiv);
+    }
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection}
+    const invalidSearchResult = (parent, query) => {
+      parent.replaceChildren()
+      
+      const searchDiv = document.createElement("div");
+      searchDiv.classList.add("invalid-search");
+      parent.appendChild(searchDiv);
+
+      searchDiv.appendChild(createIconSvg("search"));
+
+      const warningDiv = document.createElement("div");
+      warningDiv.textContent = "No Results";
+      searchDiv.appendChild(warningDiv);
+
+      const descDiv = document.createElement("div");
+      descDiv.textContent = `No results found for "${query}"`;
+      searchDiv.appendChild(descDiv);
+
+    }
+
+
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection, searchResult, invalidSearchResult}
 })();

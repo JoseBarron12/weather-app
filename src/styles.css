@@ -849,9 +849,39 @@ div.search {
 
 .search-results {
   flex-grow: 1;
-  overflow-y: scroll;
-  display: grid;
-  grid-auto-rows: 125px;
+  overflow-y: auto;
+  display: flex;
   gap: 16px;
-  background-color: red;
 }
+
+.search-results > div {
+  font-size: 1.25rem;
+}
+
+.invalid-search-icon {
+  width: 100px;
+  height: 100px;
+  fill: rgba(255, 255, 255, 0.459);
+}
+
+.invalid-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  width: 100%;
+  margin-top: 50px;
+}
+
+.invalid-search > div:first-of-type{
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.invalid-search > div:last-of-type {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.459);
+}
+
+

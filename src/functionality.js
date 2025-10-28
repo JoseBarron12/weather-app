@@ -183,10 +183,19 @@ export const functionality = (function() {
     }
 
     const searchForLocation = (input) => {
+      const searchResults = document.querySelector(".search-results")
       input.addEventListener("input", () => {
         let id = setTimeout(() => {
           callAPI.searchResult(input.value).then((result) => {
-            console.log(result);
+            if(result != null)
+            {
+              display.searchResult(searchResults,result);
+            }
+            else
+            {
+              display.invalidSearchResult(searchResults,input.value);
+            }
+            
           })
         }, "1000");
 
