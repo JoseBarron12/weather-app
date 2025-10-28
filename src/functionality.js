@@ -169,12 +169,14 @@ export const functionality = (function() {
           deleteBtn.style.display = "block";
           functionality.exitEditPgs(deleteBtn);
         });
+
+        const input = document.querySelector("input#search");
+        input.disabled = true;
       })
     };
 
     const exitEditPgs = (btn) => {
       btn.addEventListener("click", () => {
-        console.log(btn);
         const dropDown = document.querySelector(".edit-locations > svg");
         dropDown.style.display = "block"
         
@@ -185,6 +187,11 @@ export const functionality = (function() {
         deleteBtns.forEach((deleteBtn) => {
           deleteBtn.style.display = "none";
         });
+
+        const input = document.querySelector("input#search");
+        input.disabled = false;
+        input.enabled = true;
+
       });
     }
 
