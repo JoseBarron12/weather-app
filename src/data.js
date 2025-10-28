@@ -1,9 +1,10 @@
-import { differenceInHours, differenceInMinutes, fromUnixTime, getHours, addHours } from "date-fns";
+import { differenceInHours, differenceInMinutes, fromUnixTime, getHours, addHours, addMinutes } from "date-fns";
 import { id } from "date-fns/locale";
 
 const getTimeRelative = (date, offset) => {
-    const localTime = addHours(date,offset);
-    return addHours(localTime,date.getTimezoneOffset() / 60);
+    const minutes = offset * 60;
+    const localTime = addMinutes(date,minutes);
+    return addMinutes(localTime,date.getTimezoneOffset());
 }
 
 

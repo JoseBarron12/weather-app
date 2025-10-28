@@ -15,13 +15,19 @@ const getFormattedTenDate = () => {
     return format(addDays(new Date(), 9), 'yyyy-MM-dd');
 };
 
+/**
+ * 58BNGSSDKDUY7PYBE3E3WZ3TV
+ * L2H3CRVGLUHZ4PZ8G5V6ZFFAS
+ */
+
 
 export const callAPI = (function() {
     const searchResult = async (place) => {
         try {
             const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=L2H3CRVGLUHZ4PZ8G5V6ZFFAS" + "&include=resolvedAddress";
             const response = await fetch(url);
-            const weatherData = await response.json();            return weatherData;
+            const weatherData = await response.json();            
+            return weatherData;
         } catch (error) {
             console.log(error)
             return null;
@@ -30,9 +36,10 @@ export const callAPI = (function() {
     
     const weather = async (place) => {
         try {
-            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";
+            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=L2H3CRVGLUHZ4PZ8G5V6ZFFAS";
             const response = await fetch(url);
-            const weatherData = await response.json();            return weatherData;
+            const weatherData = await response.json();            
+            return weatherData;
         } catch (error) {
             console.log(error)
             return null;
@@ -41,7 +48,7 @@ export const callAPI = (function() {
 
     const averageWeather = async (place) => {
         try {
-            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";            
+            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=L2H3CRVGLUHZ4PZ8G5V6ZFFAS";            
             const response = await fetch(url + "&include=stats");
             const weatherData = await response.json();
             return weatherData;
@@ -54,7 +61,7 @@ export const callAPI = (function() {
 
     const airQuality = async (place) => {
         try {
-            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";
+            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/?key=L2H3CRVGLUHZ4PZ8G5V6ZFFAS";
             const response = await fetch(url + "&elements=aqius");
             const weatherData = await response.json();
             return weatherData;
@@ -66,7 +73,7 @@ export const callAPI = (function() {
 
     const moon = async (place) => {
         try {
-            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=58BNGSSDKDUY7PYBE3E3WZ3TV";
+            const url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+ place + "/"+ getFormattedTdyDate() + "/" + getFormattedTenDate() + "/?key=L2H3CRVGLUHZ4PZ8G5V6ZFFAS";
             const response = await fetch(url + "&elements=moonphase,moonriseEpoch,moonsetEpoch");
             const weatherData = await response.json();
             return weatherData;

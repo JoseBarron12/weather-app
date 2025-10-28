@@ -225,12 +225,9 @@ export const functionality = (function() {
     const searchResultBtn = (btn) => {
       btn.addEventListener("click", () => {
         callAPI.allWeatherData(btn.textContent).then(result => {
-          /* just to test for now
-          console.log(result.getCurrentDateTime());
+          
           display.fullPage(result);
-          */
 
-          display.fullPage(weatherClassData[0]);
           const dialog = document.querySelector("dialog");
           dialog.close();
 
@@ -280,6 +277,12 @@ export const functionality = (function() {
             addBtn.remove();
 
             dialog.show();
+
+            weatherClassData.push(result);
+
+            const locations = document.querySelector(".locations");
+            display.location(result, locations, dialog, weatherClassData.length - 1);
+            
           });
 
 
