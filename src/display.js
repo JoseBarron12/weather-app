@@ -424,6 +424,7 @@ export const display = (function() {
 
       const currentTime = weatherDataObj.getCurrentDateTime();
       const sunset = weatherDataObj.getSunset();
+      const sunrise = weatherDataObj.getSunrise()
       
       if(compareAsc(currentTime, sunset) == 1) // time is past sunset
       {
@@ -436,6 +437,15 @@ export const display = (function() {
 
         pastSun.textContent = "Sunset: " + format(sunset,"h:mm a");
 
+      }
+      else if(compareAsc(currentTime, sunrise) == -1)
+      {
+        title.insertBefore(createIconSvg("sun-rise"),currentSun);
+        
+        currentSun.textContent = "SUNRISE";
+        currentSunValue.textContent = format(sunrise,"h:mm a");
+
+        pastSun.textContent = "Sunset: " + format(sunset,"h:mm a");
       }
       else // time is not past sunset
       {
