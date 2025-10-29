@@ -1,5 +1,5 @@
 import { display } from "./display";
-import { currentWeatherPage } from "./default";
+import { currentUserLocations, currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { callAPI } from "./async";
 import { add } from "date-fns";
@@ -202,6 +202,10 @@ export const functionality = (function() {
     const deleteLocationBtn = (btn,index) => {
       btn.addEventListener("click", () => {
         weatherClassData.splice(index, 1);
+        
+        currentUserLocations.splice(index, 1);
+        localStorage.setItem("user-locations", JSON.stringify(currentUserLocations));
+        
         display.allCurrentLocations();
       })
     }
@@ -290,6 +294,9 @@ export const functionality = (function() {
             dialog.show();
 
             weatherClassData.push(result);
+            
+            currentUserLocations.push(result.getLocationName());
+            localStorage.setItem("user-locations", JSON.stringify(currentUserLocations));
 
             display.allCurrentLocations();
 
