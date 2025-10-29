@@ -8,11 +8,11 @@ import { currentUserLocations, currentWeatherPage, getWeatherData } from "./defa
 
 let weatherClassData = [];
 
-/* 
+
 getWeatherData(currentUserLocations).then(result => {
   weatherClassData = result.slice(0);
   display.initialPage();
-})*/
+})
 
 
 
