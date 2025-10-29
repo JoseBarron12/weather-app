@@ -638,6 +638,7 @@ export const display = (function() {
 
     };
 
+    
     const fullPage = (weather) => {
       const body = document.querySelector("body");
       
@@ -674,6 +675,87 @@ export const display = (function() {
 
       display.moon(weather);
     };
+
+    const initialPage = () => {
+      const slider = document.querySelector('.hour-data');
+      functionality.slider(slider);
+
+      const btn = document.querySelector(".drop-down-btn");
+      functionality.dropDownBtn(btn);
+
+      const editListBtn = document.querySelector(".drop-down-option:first-of-type");
+      functionality.showEditPgs(editListBtn);
+
+      const dialog = document.querySelector("dialog");
+      const showWinBtn = document.querySelector(".menu>svg");
+      functionality.showWinBtn(showWinBtn, dialog);
+
+      const search = dialog.querySelector("input#search");
+      const searchWindow = dialog.querySelector("div.search");
+      functionality.showSearchWin(search, searchWindow);
+
+      const searchExitBtn = dialog.querySelector(".search-cancel");
+      functionality.exitSearchWinBtn(searchExitBtn, searchWindow, search);
+
+      const searchLocation = dialog.querySelector("input#search-input");
+      functionality.searchForLocation(searchLocation);
+
+      const locations = document.querySelector(".locations");
+      
+      weatherClassData.forEach((data, index) => {
+        display.location(data, locations,dialog, index);
+
+        if(index == 0)
+        {
+          display.fullPage(data);
+        }
+      });
+
+      const circleSection = document.querySelector(".page-slider");
+
+      display.circleSection(circleSection, weatherClassData.length, currentWeatherPage.currentPage)
+
+      const circles = document.querySelectorAll(".page-slider>svg");
+
+      const leftIcon = document.querySelector(".left");
+
+      leftIcon.addEventListener("click", () => {
+        
+        circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+        if(currentWeatherPage.currentPage == 0)
+        {
+          currentWeatherPage.currentPage = weatherClassData.length - 1;
+        }
+        else
+        {
+          currentWeatherPage.currentPage = currentWeatherPage.currentPage  - 1;
+        }
+        display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+        circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+        
+      });
+
+      const rightIcon = document.querySelector(".right");
+
+      rightIcon.addEventListener("click", () => {
+        
+        circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+        
+        if(currentWeatherPage.currentPage == weatherClassData.length - 1)
+        {
+          currentWeatherPage.currentPage = 0;
+        }
+        else
+        {
+          currentWeatherPage.currentPage = currentWeatherPage.currentPage  + 1;
+        }
+        
+        display.fullPage(weatherClassData[currentWeatherPage.currentPage]);
+        circles[currentWeatherPage.currentPage].classList.toggle("current-circle");
+      });
+
+
+    }
 
     const location = (weatherDataObj, parent, window, index) => {
       const containerDiv = document.createElement("div");
@@ -817,5 +899,5 @@ export const display = (function() {
     }
 
 
-    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection, searchResult, invalidSearchResult, allCurrentLocations}
+    return {header, description, twentyFourHourForecast, upcomingForecast, feelsLike, uvIndex, wind, sun, precipitation, visibility, humidity, pressure, average, airQuality, moon, fullPage, location, circleSection, searchResult, invalidSearchResult, allCurrentLocations, initialPage}
 })();
