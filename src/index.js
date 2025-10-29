@@ -4,9 +4,9 @@ import { currentUserLocations, getWeatherData } from "./default";
 
 let weatherClassData = [];
 
-getWeatherData(currentUserLocations).then(result => {
+getWeatherData(currentUserLocations).then((result) => {
   weatherClassData = result.slice(0);
   display.initialPage();
-})
+});
 
-export {weatherClassData};
+export { weatherClassData };

@@ -1,21 +1,22 @@
 @font-face {
-    font-family: 'SF Pro Display';
-    src: url('SFProDisplay-Regular.woff2') format('woff2'),
-        url('SFProDisplay-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "SF Pro Display";
+  src:
+    url("SFProDisplay-Regular.woff2") format("woff2"),
+    url("SFProDisplay-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'SF Pro Display Bold';
-    src: url('SFProDisplay-Bold.woff2') format('woff2'),
-        url('SFProDisplay-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "SF Pro Display Bold";
+  src:
+    url("SFProDisplay-Bold.woff2") format("woff2"),
+    url("SFProDisplay-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
-
 
 *,
 *::before,
@@ -113,86 +114,84 @@ small {
 
 :root {
   --text: white;
-  --border-color:rgba(255, 255, 255, 0.15);
+  --border-color: rgba(255, 255, 255, 0.15);
   --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   --background-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    font-family: 'SF Pro Display';
-    background: linear-gradient(to top,#87CEEB, #4682B4 50%);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-family: "SF Pro Display";
+  background: linear-gradient(to top, #87ceeb, #4682b4 50%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
 main {
-    width: 100%;
-    flex-grow: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 16px 32px;
-    gap: 32px;
-    color: var(--text);
-    fill: var(--text);
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px;
+  gap: 32px;
+  color: var(--text);
+  fill: var(--text);
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    width: calc(100%);
+  display: flex;
+  flex-direction: column;
+  width: calc(100%);
 }
 
 .header > div {
-    width: calc(100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: calc(100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .location-name {
-    width: calc(100%);
-    font-size: 2.525rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    
+  width: calc(100%);
+  font-size: 2.525rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .location-name > p {
-    text-align: center;
-    width: calc(100%);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  text-align: center;
+  width: calc(100%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .current-temp {
-    font-size: 5.525rem;
-    margin-bottom: -24px;
-    margin-top: -32px;
-    transform: translateX(12px);
+  font-size: 5.525rem;
+  margin-bottom: -24px;
+  margin-top: -32px;
+  transform: translateX(12px);
 }
 
-.current-conditions  {
-    font-weight: bold;
+.current-conditions {
+  font-weight: bold;
 }
-
 
 .current-condition {
-    opacity: 80%;
+  opacity: 80%;
 }
 
 .min-max-temps {
-    display: flex;
-    gap: 8px;
-    margin-top: -6px;
+  display: flex;
+  gap: 8px;
+  margin-top: -6px;
 }
- 
+
 .weather-content {
   display: grid;
   width: 100%;
@@ -209,9 +208,9 @@ main {
   border-radius: 8px;
   padding: 8px 16px;
   grid-column: 1 / -1;
-  background: var(--background-color);   
-  backdrop-filter: blur(20px);           
-  -webkit-backdrop-filter: blur(20px);   
+  background: var(--background-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: var(--shadow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
@@ -231,7 +230,7 @@ main {
   cursor: grab;
 }
 
-.forecast-hour{
+.forecast-hour {
   flex-grow: 1;
   flex-shrink: 0;
   display: flex;
@@ -245,7 +244,6 @@ main {
   padding: 4px 0px;
 }
 
-
 .forecast-hour-temp {
   font-size: large;
 }
@@ -253,9 +251,9 @@ main {
 .upcoming-forecast {
   display: flex;
   flex-direction: column;
-  background: var(--background-color);   
-  backdrop-filter: blur(20px);           
-  -webkit-backdrop-filter: blur(20px);   
+  background: var(--background-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: var(--shadow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -301,15 +299,13 @@ main {
   gap: 8px;
 }
 
-.forecast-day-temps> div:not(:nth-child(2))
-{
+.forecast-day-temps > div:not(:nth-child(2)) {
   width: 32px;
 }
 
 .forecast-day-icon {
   position: relative;
 }
-
 
 .icon-precipitation {
   position: relative;
@@ -329,14 +325,13 @@ main {
   left: 0.5px;
 }
 
-
 .temp-slider {
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
 
-.temp-slider>input {
+.temp-slider > input {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -348,7 +343,7 @@ main {
   box-shadow: var(--shadow);
 }
 
-.temp-slider>input::-webkit-slider-thumb {
+.temp-slider > input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -357,25 +352,27 @@ main {
   border-radius: 8px;
 }
 
-.air-slider>input {
+.air-slider > input {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg,
-  rgb(0, 226, 0) 5%, 
-  yellow 15%,
-  orange 25%, 
-  red 35%, 
-  rgb(140, 5, 230) 50%, 
-  #770707 75%);
+  background: linear-gradient(
+    90deg,
+    rgb(0, 226, 0) 5%,
+    yellow 15%,
+    orange 25%,
+    red 35%,
+    rgb(140, 5, 230) 50%,
+    #770707 75%
+  );
   opacity: 0.7;
   outline: none;
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
 
-.air-slider>input::-webkit-slider-thumb {
+.air-slider > input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -385,31 +382,62 @@ main {
   border: 2px solid var(--background-color);
 }
 
-.air-value,.uv-value,.sun-value, .precipitation-value, .visibility-value, .humidity-value, .average-value, .pressure-value {
+.air-value,
+.uv-value,
+.sun-value,
+.precipitation-value,
+.visibility-value,
+.humidity-value,
+.average-value,
+.pressure-value {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.air-desc,.uv-desc, .precipitation-desc, .average-desc {
+.air-desc,
+.uv-desc,
+.precipitation-desc,
+.average-desc {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: -8px;
 }
 
-.precipitation-map,.air-quality, .feels-like, .uv-index, .wind, .sun, .precipitation, .visibility, .humidity, .moon, .average, .pressure{
+.precipitation-map,
+.air-quality,
+.feels-like,
+.uv-index,
+.wind,
+.sun,
+.precipitation,
+.visibility,
+.humidity,
+.moon,
+.average,
+.pressure {
   display: flex;
   flex-direction: column;
-  background: var(--background-color);   
-  backdrop-filter: blur(20px);           
-  -webkit-backdrop-filter: blur(20px);   
+  background: var(--background-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: var(--shadow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 8px ;
+  border-radius: 8px;
   padding: 8px 16px;
   grid-column: span 2;
 }
 
-.precipitation-title, .air-title, .feels-like-title, .uv-index-title, .wind-title, .sun-title, .visibility-title,.humidity-title, .moon-title, .average-title, .pressure-title{
+.precipitation-title,
+.air-title,
+.feels-like-title,
+.uv-index-title,
+.wind-title,
+.sun-title,
+.visibility-title,
+.humidity-title,
+.moon-title,
+.average-title,
+.pressure-title {
   display: flex;
   gap: 4px;
   font-weight: bold;
@@ -417,7 +445,14 @@ main {
   padding-bottom: 4px;
 }
 
-.feels-like, .uv-index, .sun, .precipitation, .visibility, .humidity, .average, .pressure{
+.feels-like,
+.uv-index,
+.sun,
+.precipitation,
+.visibility,
+.humidity,
+.average,
+.pressure {
   grid-column: span 1;
 }
 
@@ -426,27 +461,36 @@ main {
   font-weight: bold;
 }
 
-.feels-like-desc, .sun-title-desc, .visibility-desc, .humidity-desc, .average-values, .pressure-desc, .uv-warning, .precipitation-warning {
+.feels-like-desc,
+.sun-title-desc,
+.visibility-desc,
+.humidity-desc,
+.average-values,
+.pressure-desc,
+.uv-warning,
+.precipitation-warning {
   margin-top: auto;
 }
 
-.uv-slider>input {
+.uv-slider > input {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg,
-  rgb(0, 226, 0)20%, 
-  yellow 30%,
-  orange 60%, 
-  rgb(255, 0, 255) 80%);
+  background: linear-gradient(
+    90deg,
+    rgb(0, 226, 0) 20%,
+    yellow 30%,
+    orange 60%,
+    rgb(255, 0, 255) 80%
+  );
   opacity: 0.7;
   outline: none;
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
 
-.uv-slider>input::-webkit-slider-thumb {
+.uv-slider > input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -460,24 +504,27 @@ main {
   margin-top: 8px;
 }
 
-
-.wind-data, .moon-data {
+.wind-data,
+.moon-data {
   display: flex;
   flex-direction: column;
   margin: 8px 0px;
 }
 
-.wind-data > div, .moon-data>div {
+.wind-data > div,
+.moon-data > div {
   display: flex;
   justify-content: space-between;
   padding: 8px 0px;
 }
 
-.wind-data>div:not(:nth-child(3)),.moon-data>div:not(:nth-child(3))  {
+.wind-data > div:not(:nth-child(3)),
+.moon-data > div:not(:nth-child(3)) {
   border-bottom: 1px solid var(--border-color);
 }
 
-.wind-data > div > .text, .moon-data > div > .text  {
+.wind-data > div > .text,
+.moon-data > div > .text {
   font-weight: bold;
 }
 
@@ -495,29 +542,27 @@ main {
   font-weight: bold;
 }
 
-.average-values > div:nth-child(1)
-{
+.average-values > div:nth-child(1) {
   margin-bottom: -6px;
 }
 
-footer{
-    display: flex;
-    width: 100%;
-    border-top: 1px solid var(--border-color);
-    padding: 16px 22px;
-    justify-content: center;
-    color: var(--text);
-    fill: var(--text);
-    position: relative;
+footer {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  padding: 16px 22px;
+  justify-content: center;
+  color: var(--text);
+  fill: var(--text);
+  position: relative;
 }
 
 footer > div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.temperature-icons
-{
+.temperature-icons {
   display: flex;
   gap: 4px;
   font-size: 20px;
@@ -598,7 +643,7 @@ dialog {
   background-color: black;
   border: none;
   color: var(--text);
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   padding: 16px 32px;
   gap: 16px;
 }
@@ -631,18 +676,18 @@ dialog[open] {
 }
 
 .drop-down-menu {
-    background-color: #262626;
-    display: none;
-    position: absolute;
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    box-shadow: 1px 1px 5px rgb(0, 0, 0);
-    color: var(--text);
-    list-style-type: none;
-    cursor: grab;
-    border-radius: 8px;
-    font-family: 'SF Pro Display';
-    z-index: 999;
+  background-color: #262626;
+  display: none;
+  position: absolute;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+  color: var(--text);
+  list-style-type: none;
+  cursor: grab;
+  border-radius: 8px;
+  font-family: "SF Pro Display";
+  z-index: 999;
 }
 
 .drop-down-option {
@@ -669,10 +714,8 @@ dialog[open] {
   border-bottom-right-radius: 8px;
 }
 
-.drop-down-option:not(:last-of-type)
-{
+.drop-down-option:not(:last-of-type) {
   border-bottom: 1px solid var(--border-color);
-
 }
 
 .drop-down-option:hover {
@@ -706,38 +749,40 @@ dialog > label {
   gap: 8px;
 }
 
-dialog > label > svg, .search-header > label > svg{
+dialog > label > svg,
+.search-header > label > svg {
   fill: rgba(255, 255, 255, 0.459);
   width: 24px;
   height: 24px;
-} 
+}
 
-dialog > label > input, .search-header > label > input {
+dialog > label > input,
+.search-header > label > input {
   border: none;
   background: none;
   width: 100%;
   color: var(--text);
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
 }
 
 dialog > label > input::placeholder {
   color: rgba(255, 255, 255, 0.459);
 }
 
-input:active, input:focus {
+input:active,
+input:focus {
   outline: none;
 }
 
-input::-webkit-search-cancel-button 
-{ 
+input::-webkit-search-cancel-button {
   appearance: none;
 }
 
 .locations {
   flex-grow: 1;
   overflow-y: scroll;
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   display: grid;
   grid-auto-rows: 125px;
   gap: 16px;
@@ -748,8 +793,8 @@ input::-webkit-search-cancel-button
   gap: 16px;
 }
 
-.locations::-webkit-scrollbar { 
-  display: none;  
+.locations::-webkit-scrollbar {
+  display: none;
 }
 
 .location {
@@ -802,7 +847,7 @@ input::-webkit-search-cancel-button
   opacity: 80%;
 }
 
-.location-temp  {
+.location-temp {
   font-size: 40px;
   font-weight: bold;
 }
@@ -835,7 +880,7 @@ div.search {
   height: 100vh;
   border: none;
   color: var(--text);
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   padding: 16px 32px;
   gap: 16px;
 }
@@ -885,7 +930,7 @@ div.search {
   margin-top: 50px;
 }
 
-.invalid-search > div:first-of-type{
+.invalid-search > div:first-of-type {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 0.5px;
@@ -896,7 +941,8 @@ div.search {
   color: rgba(255, 255, 255, 0.459);
 }
 
-.add-location-btn-cancel, .add-location-btn-confirm {
+.add-location-btn-cancel,
+.add-location-btn-confirm {
   position: absolute;
   color: var(--text);
   font-size: 1.125rem;

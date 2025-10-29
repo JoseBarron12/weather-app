@@ -1,392 +1,399 @@
-import { differenceInHours, fromUnixTime, getHours, addMinutes } from "date-fns";
+import {
+  differenceInHours,
+  fromUnixTime,
+  getHours,
+  addMinutes,
+} from "date-fns";
 
 const getTimeRelative = (date, offset) => {
-    const minutes = offset * 60;
-    const localTime = addMinutes(date,minutes);
-    return addMinutes(localTime,date.getTimezoneOffset());
-}
-
+  const minutes = offset * 60;
+  const localTime = addMinutes(date, minutes);
+  return addMinutes(localTime, date.getTimezoneOffset());
+};
 
 class WeatherData {
-    
-    dayForecast = [];
-    fifteenDayForecast = [];
-    
-    constructor(data)
-    {
-        this._data = data;
+  dayForecast = [];
+  fifteenDayForecast = [];
 
-        const days = data.days;
-        const offset = data.tzoffset;
+  constructor(data) {
+    this._data = data;
 
-        this._offset = offset;
-        for(const day of days)
-        {
-            const dayData = new IndividualWeatherData(
-                getTimeRelative(fromUnixTime(day.datetimeEpoch), offset),
-                Math.round(day.tempmin),
-                Math.round(day.temp),
-                Math.round(day.tempmax),
-                day.icon, 
-                getTimeRelative(fromUnixTime(day.sunriseEpoch), offset),
-                Math.round(day.precipprob)
-            );
+    const days = data.days;
+    const offset = data.tzoffset;
 
-            this.fifteenDayForecast.push(dayData);
-        }
+    this._offset = offset;
+    for (const day of days) {
+      const dayData = new IndividualWeatherData(
+        getTimeRelative(fromUnixTime(day.datetimeEpoch), offset),
+        Math.round(day.tempmin),
+        Math.round(day.temp),
+        Math.round(day.tempmax),
+        day.icon,
+        getTimeRelative(fromUnixTime(day.sunriseEpoch), offset),
+        Math.round(day.precipprob),
+      );
 
-        const currentHour = getHours(getTimeRelative(fromUnixTime(data.currentConditions.datetimeEpoch), offset));
-
-        const currentDay = days[0];
-
-        const currentDayHours = currentDay.hours;
-
-        for(let i = currentHour; i < currentDayHours.length; i++)
-        {
-            const hourData = new IndividualWeatherData(
-                getTimeRelative(fromUnixTime(currentDayHours[i].datetimeEpoch),offset),
-                Math.round(currentDayHours[i].tempmin),
-                Math.round(currentDayHours[i].temp),
-                Math.round(currentDayHours[i].tempmax),
-                currentDayHours[i].icon,
-                undefined,
-                Math.round(currentDayHours[i].precipprob)
-            );
-            this.dayForecast.push(hourData);
-        }
-
-        const leftoverHours = 24 - (24 - currentHour);
-        const nextDay = days[1];
-        const nextDayHours = nextDay.hours;
-
-        for(let i = 0; i < leftoverHours; i++)
-        {
-            const hourData = new IndividualWeatherData(
-                getTimeRelative(fromUnixTime(nextDayHours[i].datetimeEpoch),offset),
-                Math.round(nextDayHours[i].tempmin),
-                Math.round(nextDayHours[i].temp),
-                Math.round(nextDayHours[i].tempmax),
-                nextDayHours[i].icon,
-                getTimeRelative(fromUnixTime(nextDayHours[i].sunsetEpoch),offset),
-                Math.round(nextDayHours[i].precipprob)
-            );
-            this.dayForecast.push(hourData);
-        }
-
+      this.fifteenDayForecast.push(dayData);
     }
 
-    get data() {
-        return this._data
+    const currentHour = getHours(
+      getTimeRelative(
+        fromUnixTime(data.currentConditions.datetimeEpoch),
+        offset,
+      ),
+    );
+
+    const currentDay = days[0];
+
+    const currentDayHours = currentDay.hours;
+
+    for (let i = currentHour; i < currentDayHours.length; i++) {
+      const hourData = new IndividualWeatherData(
+        getTimeRelative(fromUnixTime(currentDayHours[i].datetimeEpoch), offset),
+        Math.round(currentDayHours[i].tempmin),
+        Math.round(currentDayHours[i].temp),
+        Math.round(currentDayHours[i].tempmax),
+        currentDayHours[i].icon,
+        undefined,
+        Math.round(currentDayHours[i].precipprob),
+      );
+      this.dayForecast.push(hourData);
     }
 
-    get upcomingForecast() {
-        return this.fifteenDayForecast;
-    }
+    const leftoverHours = 24 - (24 - currentHour);
+    const nextDay = days[1];
+    const nextDayHours = nextDay.hours;
 
-    get todayForecast() {
-        return this.dayForecast;
+    for (let i = 0; i < leftoverHours; i++) {
+      const hourData = new IndividualWeatherData(
+        getTimeRelative(fromUnixTime(nextDayHours[i].datetimeEpoch), offset),
+        Math.round(nextDayHours[i].tempmin),
+        Math.round(nextDayHours[i].temp),
+        Math.round(nextDayHours[i].tempmax),
+        nextDayHours[i].icon,
+        getTimeRelative(fromUnixTime(nextDayHours[i].sunsetEpoch), offset),
+        Math.round(nextDayHours[i].precipprob),
+      );
+      this.dayForecast.push(hourData);
     }
+  }
 
-    getLocationName() {
-        return this._data.resolvedAddress;
+  get data() {
+    return this._data;
+  }
+
+  get upcomingForecast() {
+    return this.fifteenDayForecast;
+  }
+
+  get todayForecast() {
+    return this.dayForecast;
+  }
+
+  getLocationName() {
+    return this._data.resolvedAddress;
+  }
+
+  getCurrentTemp() {
+    return Math.round(this._data.currentConditions.temp);
+  }
+
+  getCurrentCondition() {
+    return this._data.currentConditions.conditions;
+  }
+
+  getMaxTemp() {
+    return Math.round(this._data.days[0].tempmax);
+  }
+
+  getMinTemp() {
+    return Math.round(this._data.days[0].tempmin);
+  }
+
+  getDescription() {
+    return this._data.description;
+  }
+
+  getCurrentDateTime() {
+    return getTimeRelative(
+      fromUnixTime(this._data.currentConditions.datetimeEpoch),
+      this._offset,
+    );
+  }
+
+  getSunrise() {
+    return getTimeRelative(
+      fromUnixTime(this._data.currentConditions.sunriseEpoch),
+      this._offset,
+    );
+  }
+
+  getSunset() {
+    return getTimeRelative(
+      fromUnixTime(this._data.currentConditions.sunsetEpoch),
+      this._offset,
+    );
+  }
+
+  getFeelsLikeTemp() {
+    return Math.round(this._data.currentConditions.feelslike);
+  }
+
+  getUVIndex() {
+    return this._data.currentConditions.uvindex;
+  }
+
+  getWindSpeed() {
+    return Math.round(this._data.currentConditions.windspeed);
+  }
+
+  getWindGust() {
+    return Math.round(this._data.currentConditions.windgust);
+  }
+
+  getWindDirection() {
+    return this._data.currentConditions.winddir;
+  }
+
+  getAmountOfPrecipitation() {
+    return this._data.days[0].precip;
+  }
+
+  getChanceOfPrecipitation() {
+    return this._data.currentConditions.precipprob;
+  }
+
+  getTypeOfPrecipitation() {
+    return this._data.currentConditions.preciptype;
+  }
+
+  getVisibility() {
+    return Math.round(this._data.currentConditions.visibility);
+  }
+
+  getHumidity() {
+    return Math.round(this._data.currentConditions.humidity);
+  }
+
+  getDewPt() {
+    return Math.round(this._data.currentConditions.dew);
+  }
+
+  getPressure() {
+    return Math.round(this._data.currentConditions.pressure);
+  }
+
+  set averageHighTemp(data) {
+    this._averageHighTemp = data.days[0].normal.tempmax[1];
+  }
+
+  get averageHighTemp() {
+    return Math.round(this._averageHighTemp);
+  }
+
+  set airQuality(data) {
+    this._airQuality = data.days[0].aqius;
+  }
+
+  get airQuality() {
+    return this._airQuality;
+  }
+
+  set moonPhase(data) {
+    this._moonPhase = data.days[0].moonphase;
+  }
+
+  get moonPhase() {
+    return this._moonPhase;
+  }
+
+  set moonRise(data) {
+    this._moonRise = fromUnixTime(data.days[0].moonriseEpoch);
+  }
+
+  get moonRise() {
+    return this._moonRise;
+  }
+
+  set moonSet(data) {
+    if (data.days[0].moonsetEpoch == undefined) {
+      this._moonSet = fromUnixTime(data.days[1].moonsetEpoch);
+    } else {
+      this._moonSet = fromUnixTime(data.days[0].moonsetEpoch);
     }
+  }
 
-    getCurrentTemp() {
-        return Math.round(this._data.currentConditions.temp);
-    }
+  get moonSet() {
+    return this._moonSet;
+  }
 
-    getCurrentCondition() {
-        return this._data.currentConditions.conditions;
-    }
+  set moonDuration(data) {
+    this._moonDuration = differenceInHours(this._moonSet, this._moonRise);
+  }
 
-    getMaxTemp() {
-        return Math.round(this._data.days[0].tempmax);
-    }
+  get moonDuration() {
+    return this._moonDuration;
+  }
 
-    getMinTemp() {
-        return Math.round(this._data.days[0].tempmin);
-    }
+  setAverageHighTemp(newTemp) {
+    this._averageHighTemp = newTemp;
+  }
 
-    getDescription() {
-        return this._data.description;
-    }
+  setMoonRise(newDate) {
+    this._moonRise = newDate;
+  }
 
-    getCurrentDateTime() {
-        return getTimeRelative(fromUnixTime(this._data.currentConditions.datetimeEpoch), this._offset);
-    }
+  setMoonSet(newDate) {
+    this._moonSet = newDate;
+  }
 
-    getSunrise(){
-        return getTimeRelative(fromUnixTime(this._data.currentConditions.sunriseEpoch), this._offset);
-    }
+  setMoonDuration(newDuration) {
+    this._moonDuration = newDuration;
+  }
 
-    getSunset() {
-        return getTimeRelative(fromUnixTime(this._data.currentConditions.sunsetEpoch), this._offset);
-    }
+  setMoonPhase(newPhase) {
+    this._moonPhase = newPhase;
+  }
 
-    getFeelsLikeTemp() {
-        return Math.round(this._data.currentConditions.feelslike);
-    }
-
-    getUVIndex() {
-        return this._data.currentConditions.uvindex;
-    }
-
-    getWindSpeed() {
-        return Math.round(this._data.currentConditions.windspeed);
-    }
-
-    getWindGust() {
-        return Math.round(this._data.currentConditions.windgust);
-    }
-
-    getWindDirection() {
-        return this._data.currentConditions.winddir;
-    }
-
-    getAmountOfPrecipitation() {
-        return this._data.days[0].precip;
-    }
-
-    getChanceOfPrecipitation() {
-        return this._data.currentConditions.precipprob;
-    }
-
-    getTypeOfPrecipitation() {
-        return this._data.currentConditions.preciptype;
-    }
-
-    getVisibility() {
-        return Math.round(this._data.currentConditions.visibility);
-    }
-
-    getHumidity() {
-        return Math.round(this._data.currentConditions.humidity);
-    }
-
-    getDewPt() {
-        return Math.round(this._data.currentConditions.dew);
-    }
-
-    getPressure() {
-        return Math.round(this._data.currentConditions.pressure);
-    }
-
-    set averageHighTemp(data) {
-        this._averageHighTemp = data.days[0].normal.tempmax[1];
-    }
-
-    get averageHighTemp() {
-        return Math.round(this._averageHighTemp);
-    }
-
-    set airQuality(data) {
-        this._airQuality = data.days[0].aqius;
-    }
-
-    get airQuality() {
-        return this._airQuality;
-    }
-
-    set moonPhase(data) {
-        this._moonPhase = data.days[0].moonphase;
-    }
-
-    get moonPhase() {
-        return this._moonPhase;
-    }
-
-    set moonRise(data) {
-        this._moonRise = fromUnixTime(data.days[0].moonriseEpoch);
-    }
-
-    get moonRise() {
-        return this._moonRise;
-    }
-
-    set moonSet(data) {
-        if(data.days[0].moonsetEpoch == undefined)
-        {
-            this._moonSet = fromUnixTime(data.days[1].moonsetEpoch);
-        }
-        else
-        {
-            this._moonSet = fromUnixTime(data.days[0].moonsetEpoch);
-        }
-        
-    }
-
-    get moonSet() {
-        return this._moonSet;
-    }
-
-    set moonDuration(data) {
-        this._moonDuration = differenceInHours(this._moonSet, this._moonRise);
-    }
-
-    get moonDuration() {
-        return this._moonDuration;
-    }
-
-    setAverageHighTemp(newTemp) {
-        this._averageHighTemp = newTemp
-    }
-
-    setMoonRise(newDate) {
-        this._moonRise = newDate;
-    }
-
-    setMoonSet(newDate) {
-        this._moonSet = newDate;
-    }
-
-    setMoonDuration(newDuration) {
-        this._moonDuration = newDuration;
-    }
-
-    setMoonPhase(newPhase) {
-        this._moonPhase = newPhase;
-    }
-
-    setAirQuality(newQuality) {
-        this._airQuality = newQuality;
-    }
-
+  setAirQuality(newQuality) {
+    this._airQuality = newQuality;
+  }
 }
 
-class IndividualWeatherData{
-    constructor(date, tempMin, temp, tempMax, icon, sunrise, precipProb)
-    {
-        this._date = date;
-        this._tempMin = tempMin;
-        this._temp = temp;
-        this._tempMax = tempMax;
-        this._icon = icon;
-        this._sunrise = sunrise;
-        this._precipProb = precipProb;
-    }
+class IndividualWeatherData {
+  constructor(date, tempMin, temp, tempMax, icon, sunrise, precipProb) {
+    this._date = date;
+    this._tempMin = tempMin;
+    this._temp = temp;
+    this._tempMax = tempMax;
+    this._icon = icon;
+    this._sunrise = sunrise;
+    this._precipProb = precipProb;
+  }
 
-    get date() {
-        return this._date;
-    }
+  get date() {
+    return this._date;
+  }
 
-    get tempMin() {
-        return this._tempMin;
-    }
+  get tempMin() {
+    return this._tempMin;
+  }
 
-    get temp() {
-        return this._temp;
-    }
+  get temp() {
+    return this._temp;
+  }
 
-    get tempMax() {
-        return this._tempMax;
-    }
+  get tempMax() {
+    return this._tempMax;
+  }
 
-    get icon() {
-        return this._icon;
-    }
+  get icon() {
+    return this._icon;
+  }
 
-    get sunrise() {
-        return this._sunrise;
-    }
+  get sunrise() {
+    return this._sunrise;
+  }
 
-    get precipProb() {
-        return this._precipProb;
-    }
+  get precipProb() {
+    return this._precipProb;
+  }
 }
 
 class WeatherLocation {
-    constructor(name, time, temp, tempMin, tempMax, desc, isCurrentLoc)
-    {
-        this._id = crypto.randomUUID();
-        this._name = name;
-        this._time = time;
-        this._temp = temp;
-        this._tempMin = tempMin;
-        this._tempMax = tempMax;
-        this._desc = desc;
-        this._isCurrentLoc = isCurrentLoc;
-    };
+  constructor(name, time, temp, tempMin, tempMax, desc, isCurrentLoc) {
+    this._id = crypto.randomUUID();
+    this._name = name;
+    this._time = time;
+    this._temp = temp;
+    this._tempMin = tempMin;
+    this._tempMax = tempMax;
+    this._desc = desc;
+    this._isCurrentLoc = isCurrentLoc;
+  }
 
-    get Id() {
-        return this._id;
-    }
+  get Id() {
+    return this._id;
+  }
 
-    set Id(newId) {
-        this._id = newId;
-    }
+  set Id(newId) {
+    this._id = newId;
+  }
 
-    get name() {
-        return this._name;
-    }
+  get name() {
+    return this._name;
+  }
 
-    set name(newName) {
-        this._name = newName;
-    }
+  set name(newName) {
+    this._name = newName;
+  }
 
-    get time() {
-        return this._time;
-    }
+  get time() {
+    return this._time;
+  }
 
-    set time(newTime) {
-        this._time = newTime;
-    }
+  set time(newTime) {
+    this._time = newTime;
+  }
 
-    get temp() {
-        return this._temp;
-    }
+  get temp() {
+    return this._temp;
+  }
 
-    set temp(newTemp) {
-        this._temp = newTemp;
-    }
+  set temp(newTemp) {
+    this._temp = newTemp;
+  }
 
-    get tempMin() {
-        return this._tempMin;
-    }
+  get tempMin() {
+    return this._tempMin;
+  }
 
-    set tempMin(newTemp) {
-        this._tempMin = newTemp;
-    }
+  set tempMin(newTemp) {
+    this._tempMin = newTemp;
+  }
 
-    get tempMax() {
-        return this._tempMax;
-    }
+  get tempMax() {
+    return this._tempMax;
+  }
 
-    set tempMax(newTemp) {
-        this._tempMax = newTemp;
-    }
+  set tempMax(newTemp) {
+    this._tempMax = newTemp;
+  }
 
-    get desc() {
-        return this._desc;
-    }
+  get desc() {
+    return this._desc;
+  }
 
-    set desc(newDesc) {
-        this._desc = newDesc;
-    }
+  set desc(newDesc) {
+    this._desc = newDesc;
+  }
 
-    get isCurrentLoc() {
-        return this.isCurrentLoc;
-    }
+  get isCurrentLoc() {
+    return this.isCurrentLoc;
+  }
 
-    set isCurrentLoc(newFlag) {
-        this._isCurrentLoc = newFlag;
-    }
-
+  set isCurrentLoc(newFlag) {
+    this._isCurrentLoc = newFlag;
+  }
 }
-
 
 class WeatherPages {
-    constructor() {
-        this._currentPage = 0;
-    }
+  constructor() {
+    this._currentPage = 0;
+  }
 
-    get currentPage() {
-        return this._currentPage;
-    }
-    set currentPage(newPage) {
-       this._currentPage = newPage;
-    }
-
+  get currentPage() {
+    return this._currentPage;
+  }
+  set currentPage(newPage) {
+    this._currentPage = newPage;
+  }
 }
 
-
-export {WeatherData, IndividualWeatherData, WeatherLocation, WeatherPages, getTimeRelative}
+export {
+  WeatherData,
+  IndividualWeatherData,
+  WeatherLocation,
+  WeatherPages,
+  getTimeRelative,
+};
