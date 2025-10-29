@@ -1,6 +1,4 @@
-import { locationData } from ".";
 import { WeatherData } from "./data";
-import { display } from "./display";
 import { format, addDays } from "date-fns";
 
 const getFormattedTdyDate = (date) => {
@@ -14,9 +12,6 @@ const getFormattedTdyDate = (date) => {
     }
 };
 
-const getFormattedTmrDate = () => {
-    return format(startOfTomorrow(), 'yyyy-MM-dd');
-};
 
 const getFormattedTenDate = (date) => {
     if(date === undefined)

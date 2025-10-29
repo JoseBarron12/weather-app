@@ -2,7 +2,6 @@ import { display } from "./display";
 import { currentUserLocations, currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { callAPI } from "./async";
-import { add } from "date-fns";
 import { getTimeRelative } from "./data";
 
 export const functionality = (function() {
@@ -16,7 +15,7 @@ export const functionality = (function() {
         scrollLeft = slider.scrollLeft;
         }
 
-        const stopDragging = (e) => {
+        const stopDragging = () => {
         mouseDown = false;
         }
 

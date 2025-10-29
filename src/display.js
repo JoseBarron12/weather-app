@@ -1,7 +1,5 @@
-import { he, hu, te } from "date-fns/locale";
-import { WeatherData } from "./data";
 import { createIconSvg } from "./icon";
-import { compareAsc, format, getHours, addHours, constructFrom} from "date-fns";
+import { compareAsc, format, getHours} from "date-fns";
 import { currentWeatherPage } from "./default";
 import { weatherClassData } from ".";
 import { functionality } from "./functionality";
