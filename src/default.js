@@ -1,5 +1,6 @@
 import { callAPI } from "./async";
 import { WeatherPages } from "./data";
+import { getTimeRelative } from "./data";
 
 let currentWeatherPage = new WeatherPages;
 
@@ -14,7 +15,11 @@ const getWeatherData = async (defaultLocations) => {
     let array = [];
     
     for(const location of defaultLocations) {
-        const result = await callAPI.allWeatherData(location);
+        
+        const locationData = await callAPI.searchResult(location);
+        const time = await getTimeRelative(new Date(), locationData.tzoffset);
+        
+        const result = await callAPI.allWeatherData(location,time);
         array.push(result);
     };
 
